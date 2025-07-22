@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { ArrowDown, ArrowUp, Minus, ShieldCheck } from 'lucide-react';
 import { useCountUp } from '@/hooks/use-count-up';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -81,71 +82,90 @@ const frameworkData = [
 
 export function RiskAndResilienceFramework() {
   const [selectedRisk, setSelectedRisk] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
-  const handleRiskClick = (id: string) => {
+  const handleInteraction = (id: string) => {
     setSelectedRisk(prev => (prev === id ? null : id));
   };
-
-  const selectedShield = frameworkData.find(d => d.id === selectedRisk)?.shield;
+  
+  const getInteractionHandlers = (id: string) => {
+    if (isMobile) {
+      return {
+        onClick: () => handleInteraction(id)
+      }
+    }
+    return {
+      onMouseEnter: () => setSelectedRisk(id),
+      onMouseLeave: () => setSelectedRisk(null),
+    }
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <TooltipProvider>
-        {frameworkData.map(({ id, risk }) => (
-          <div key={id} className="flex flex-col gap-4">
+        {frameworkData.map(({ id, risk }) => {
+          const selectedShield = frameworkData.find(d => d.id === selectedRisk)?.shield;
+          const isSelected = selectedRisk === id;
+
+          return (
             <div 
-              onClick={() => handleRiskClick(id)}
-              className={cn(
-                "bg-white/5 p-4 rounded-lg border border-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer",
-                selectedRisk === id && "border-primary ring-2 ring-primary"
-              )}
+              key={id} 
+              className="flex flex-col gap-4"
+              {...getInteractionHandlers(id)}
             >
-              <div className="flex justify-between items-center">
-                <h3 className="font-semibold text-sm">{risk.name}</h3>
-                <div className="flex items-center gap-1 text-xs capitalize text-muted-foreground">
-                  {risk.trendIcon}
-                  <span>{risk.trend}</span>
-                </div>
-              </div>
-              <p className="text-2xl font-bold mt-2">
-                 {risk.metric ? <><CountUpNumber to={risk.metric} decimals={risk.metric === 90.3 || risk.metric === 35.7 ? 1 : 0} />{risk.metricSuffix}</> : risk.metricText}
-              </p>
-              <div className="mt-2 text-xs text-primary space-y-1">
-                <div className="text-muted-foreground leading-tight">Mitigation: 
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                       <span className="text-primary/50 opacity-50 hover:opacity-100 transition-opacity cursor-pointer text-xs ml-1">[cite: {risk.citation}]</span>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Source: OBLISCO_MACRO_ANALYSIS.PDF</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
-            </div>
-            
-            <AnimatePresence>
-              {selectedRisk === id && selectedShield && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10, height: 0 }}
-                  animate={{ opacity: 1, y: 0, height: 'auto' }}
-                  exit={{ opacity: 0, y: -10, height: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="w-full"
-                >
-                  <div className="bg-secondary/50 p-4 rounded-lg border border-primary/30 h-full">
-                    <div className="flex items-center gap-3 mb-2">
-                      <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
-                      <h4 className="font-bold text-base text-primary">{selectedShield.headline}</h4>
-                    </div>
-                    <p className="text-sm text-foreground">{selectedShield.text}</p>
-                    <p className="text-xs text-muted-foreground mt-2">{selectedShield.attribution}</p>
+              <div
+                className={cn(
+                  "bg-white/5 p-4 rounded-lg border border-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer",
+                  isSelected && "border-primary ring-2 ring-primary"
+                )}
+              >
+                <div className="flex justify-between items-center">
+                  <h3 className="font-semibold text-sm">{risk.name}</h3>
+                  <div className="flex items-center gap-1 text-xs capitalize text-muted-foreground">
+                    {risk.trendIcon}
+                    <span>{risk.trend}</span>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
+                </div>
+                <p className="text-2xl font-bold mt-2">
+                  {risk.metric ? <><CountUpNumber to={risk.metric} decimals={risk.metric === 90.3 || risk.metric === 35.7 ? 1 : 0} />{risk.metricSuffix}</> : risk.metricText}
+                </p>
+                <div className="mt-2 text-xs text-primary space-y-1">
+                  <div className="text-muted-foreground leading-tight">Mitigation:
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span className="text-primary/50 opacity-50 hover:opacity-100 transition-opacity cursor-pointer text-xs ml-1">[cite: {risk.citation}]</span>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Source: OBLISCO_MACRO_ANALYSIS.PDF</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </div>
+              </div>
+
+              <AnimatePresence>
+                {isSelected && selectedShield && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, height: 0 }}
+                    animate={{ opacity: 1, y: 0, height: 'auto' }}
+                    exit={{ opacity: 0, y: -10, height: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="w-full"
+                  >
+                    <div className="bg-secondary/50 p-4 rounded-lg border border-primary/30 h-full">
+                      <div className="flex items-center gap-3 mb-2">
+                        <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
+                        <h4 className="font-bold text-base text-primary">{selectedShield.headline}</h4>
+                      </div>
+                      <p className="text-sm text-foreground">{selectedShield.text}</p>
+                      <p className="text-xs text-muted-foreground mt-2">{selectedShield.attribution}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )
+        })}
       </TooltipProvider>
     </div>
   );
