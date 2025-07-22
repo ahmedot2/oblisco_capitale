@@ -62,17 +62,24 @@ export function StrategicShield() {
           {riskCategories.map((risk) => (
             <div
               key={risk.title}
-              className="relative w-full h-48 [transform-style:preserve-3d] transition-transform duration-500 cursor-pointer"
+              className="relative w-full h-48 [transform-style:preserve-3d] transition-transform duration-500 cursor-pointer group"
               onClick={() => handleCardClick(risk.title)}
-              style={{
-                transform: flippedCard === risk.title ? 'rotateY(180deg)' : 'none',
-              }}
             >
-              <div className="absolute w-full h-full bg-white/5 p-4 rounded-lg border border-white/10 flex flex-col items-center justify-center text-center [backface-visibility:hidden]">
+              <div
+                className="absolute w-full h-full bg-white/5 p-4 rounded-lg border border-white/10 flex flex-col items-center justify-center text-center [backface-visibility:hidden] transition-transform duration-300 group-hover:-translate-y-1"
+                style={{
+                  transform: flippedCard === risk.title ? 'rotateY(180deg)' : 'none',
+                }}
+              >
                 <div className="p-3 bg-primary/10 rounded-lg mb-2">{risk.icon}</div>
                 <h3 className="font-semibold">{risk.title}</h3>
               </div>
-              <div className="absolute w-full h-full bg-secondary p-4 rounded-lg border border-primary/50 [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto">
+              <div
+                className="absolute w-full h-full bg-secondary p-4 rounded-lg border border-primary/50 [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-y-auto"
+                style={{
+                  transform: flippedCard === risk.title ? 'rotateY(0deg)' : 'rotateY(180deg)',
+                }}
+              >
                  <h4 className="font-bold text-sm text-primary">Mitigation Strategy</h4>
                  <div className="text-xs mt-2 space-y-2">
                    <p><span className="font-bold text-primary/80">The ARK:</span> {risk.mitigation.ark}</p>

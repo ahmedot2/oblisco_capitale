@@ -10,6 +10,8 @@ import { TowerModel } from "@/components/dashboard/tower-model";
 import { UnassailableProposition } from "@/components/dashboard/unassailable-proposition";
 import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "@/components/ui/bento-card";
 import { Button } from "@/components/ui/button";
+import { BriefingModal } from "@/components/modals/briefing-modal";
+import { VaultModal } from "@/components/modals/vault-modal";
 
 export default function Home() {
   return (
@@ -71,8 +73,12 @@ export default function Home() {
               <h2 id="call-to-action-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VI. The Call to Action</h2>
               <p className="text-lg text-muted-foreground mb-8">Seizing the Future. A Definitive Opportunity for a Decisive Partner.</p>
               <div className="flex justify-center gap-4">
-                <Button size="lg">Request Executive Briefing</Button>
-                <Button size="lg" variant="outline">Access Secure Data Vault</Button>
+                <BriefingModal>
+                  <Button size="lg">Request Executive Briefing</Button>
+                </BriefingModal>
+                <VaultModal>
+                  <Button size="lg" variant="outline">Access Secure Data Vault</Button>
+                </VaultModal>
               </div>
             </section>
 

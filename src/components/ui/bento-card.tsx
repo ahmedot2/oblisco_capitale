@@ -9,7 +9,7 @@ const BentoCard = React.forwardRef<
   <Card
     ref={ref}
     className={cn(
-      "bg-gradient-to-br from-white/5 to-transparent backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg h-full flex flex-col transition-all duration-300 hover:border-white/20 hover:shadow-xl",
+      "bg-gradient-to-br from-white/5 to-transparent backdrop-blur-lg border border-white/10 rounded-2xl shadow-lg h-full flex flex-col transition-all duration-300 hover:border-white/20 hover:shadow-xl hover:-translate-y-1",
       className
     )}
     {...props}
