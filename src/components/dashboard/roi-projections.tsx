@@ -42,7 +42,7 @@ const scenarioData = {
 
 const processWaterfallData = (data: any[]) => {
   let cumulative = 0;
-  return data.map(item => {
+  const processed = data.map(item => {
     if (item.isStart) {
       cumulative = Math.abs(item.value);
       return { ...item, range: [0, cumulative], value: cumulative };
@@ -56,6 +56,16 @@ const processWaterfallData = (data: any[]) => {
     cumulative += item.value;
     return { ...item, range: [start, end] };
   });
+
+  // Calculate total for the final bar
+  let finalTotal = 0;
+  data.forEach(item => {
+    if (!item.isTotal) {
+      finalTotal += item.value;
+    }
+  });
+
+  return processed.map(item => item.isTotal ? { ...item, range: [0, finalTotal], value: finalTotal } : item);
 };
 
 const WaterfallTooltip = ({ active, payload, label }: any) => {
@@ -98,56 +108,55 @@ export function RoiProjections() {
     const processedWaterfall = processWaterfallData(waterfall);
 
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <div className="lg:col-span-3 flex flex-col">
-          <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
-          <div className="w-full h-[400px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart 
-                data={processedWaterfall} 
-                margin={{ top: 5, right: 20, left: 20, bottom: 40 }}
-                barGap={-1}
-              >
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
-                <XAxis dataKey="name" angle={-30} textAnchor="end" height={80} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="B" />
-                <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-                <Bar dataKey="range" isAnimationActive={true}>
-                  {processedWaterfall.map((entry, index) => {
-                    let color = 'transparent';
-                    if(entry.isStart || entry.isTotal) {
-                      color = 'hsl(var(--primary))'; // Blue for start/end
-                    } else if(entry.value > 0) {
-                      color = 'hsl(var(--chart-2))'; // Teal for positive
-                    } else {
-                      color = 'hsl(var(--destructive))'; // Red for negative
-                    }
-                    return <Cell key={`cell-${index}`} fill={color} />;
-                  })}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+          <div className="lg:col-span-3">
+            <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
+            <div className="w-full h-[450px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={processedWaterfall}
+                  margin={{ top: 5, right: 20, left: 20, bottom: 80 }} // Increased bottom margin
+                  barGap={-1}
+                >
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
+                  <XAxis dataKey="name" angle={-35} textAnchor="end" height={100} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="B" />
+                  <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
+                  <Bar dataKey="range" isAnimationActive={true}>
+                    {processedWaterfall.map((entry, index) => {
+                      let color = 'transparent';
+                      if(entry.isStart || entry.isTotal) {
+                        color = 'hsl(var(--primary))';
+                      } else if(entry.value > 0) {
+                        color = 'hsl(var(--chart-2))';
+                      } else {
+                        color = 'hsl(var(--destructive))';
+                      }
+                      return <Cell key={`cell-${index}`} fill={color} />;
+                    })}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+  
+          <div className="lg:col-span-2 flex flex-col justify-center p-4">
+              <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
+              <div className="space-y-4">
+                  {controlBenefits.map(item => (
+                      <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
+                          <div className="text-primary mt-1">{item.icon}</div>
+                          <div>
+                              <h4 className="font-semibold text-sm">{item.title}</h4>
+                              <p className="text-xs text-muted-foreground">{item.text}</p>
+                          </div>
+                      </BentoCard>
+                  ))}
+              </div>
           </div>
         </div>
-
-        <div className="lg:col-span-2 flex flex-col justify-center p-4">
-            <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
-            <div className="space-y-4">
-                {controlBenefits.map(item => (
-                    <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
-                        <div className="text-primary mt-1">{item.icon}</div>
-                        <div>
-                            <h4 className="font-semibold text-sm">{item.title}</h4>
-                            <p className="text-xs text-muted-foreground">{item.text}</p>
-                        </div>
-                    </BentoCard>
-                ))}
-            </div>
-        </div>
-      </div>
-    );
+      );
   }
-
 
   return (
     <>
