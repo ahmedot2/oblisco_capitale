@@ -108,14 +108,14 @@ export function RoiProjections() {
     const processedWaterfall = processWaterfallData(waterfall);
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start p-6">
           <div className="lg:col-span-3">
             <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
-            <div className="w-full h-[450px]">
+            <div className="w-full h-[400px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={processedWaterfall}
-                  margin={{ top: 5, right: 20, left: 20, bottom: 80 }} // Increased bottom margin
+                  margin={{ top: 5, right: 20, left: 20, bottom: 80 }}
                   barGap={-1}
                 >
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
@@ -140,12 +140,12 @@ export function RoiProjections() {
             </div>
           </div>
   
-          <div className="lg:col-span-2 flex flex-col justify-center p-4">
+          <div className="lg:col-span-2 flex flex-col justify-center">
               <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
               <div className="space-y-4">
                   {controlBenefits.map(item => (
                       <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
-                          <div className="text-primary mt-1">{item.icon}</div>
+                          <div className="text-primary mt-1 shrink-0">{item.icon}</div>
                           <div>
                               <h4 className="font-semibold text-sm">{item.title}</h4>
                               <p className="text-xs text-muted-foreground">{item.text}</p>
@@ -159,35 +159,37 @@ export function RoiProjections() {
   }
 
   return (
-    <>
+    <BentoCard className="flex flex-col">
       <BentoCardHeader>
         <BentoCardTitle className="font-headline">The Sovereign Return Proposition</BentoCardTitle>
         <BentoCardDescription>Interactive financial model projecting returns under the full mandate.</BentoCardDescription>
       </BentoCardHeader>
-      <BentoCardContent>
+      <BentoCardContent className="flex-grow">
         <Tabs 
           defaultValue="base" 
-          className="w-full"
+          className="w-full h-full flex flex-col"
           onValueChange={(value) => setScenario(value as "conservative" | "base" | "aggressive")}
         >
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-6 px-6">
             <TabsList>
               <TabsTrigger value="conservative">Conservative</TabsTrigger>
               <TabsTrigger value="base">Base Case</TabsTrigger>
               <TabsTrigger value="aggressive">Aggressive</TabsTrigger>
             </TabsList>
           </div>
-          <TabsContent value="conservative" className="w-full h-full m-0">
-            {renderContent("conservative")}
-          </TabsContent>
-          <TabsContent value="base" className="w-full h-full m-0">
-            {renderContent("base")}
-          </TabsContent>
-          <TabsContent value="aggressive" className="w-full h-full m-0">
-            {renderContent("aggressive")}
-          </TabsContent>
+          <div className="flex-grow">
+            <TabsContent value="conservative" className="w-full h-full m-0">
+              {renderContent("conservative")}
+            </TabsContent>
+            <TabsContent value="base" className="w-full h-full m-0">
+              {renderContent("base")}
+            </TabsContent>
+            <TabsContent value="aggressive" className="w-full h-full m-0">
+              {renderContent("aggressive")}
+            </TabsContent>
+          </div>
         </Tabs>
       </BentoCardContent>
-    </>
+    </BentoCard>
   )
 }
