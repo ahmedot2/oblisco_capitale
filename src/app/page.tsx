@@ -19,6 +19,14 @@ export default function Home() {
   return (
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
+        <video
+            className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
+            src="/background.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          ></video>
         <div className="absolute inset-0 w-full h-full bg-black/50 bg-grid-white/[0.05]"></div>
       </div>
       <div className="relative min-h-screen w-full">
