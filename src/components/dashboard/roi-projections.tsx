@@ -1,11 +1,13 @@
 
+
 "use client"
 
-import { Bar, BarChart, Pie, PieChart, ResponsiveContainer, Cell, Tooltip, LabelList } from "recharts"
+import { Bar, BarChart, Pie, PieChart, ResponsiveContainer, Cell, Tooltip, LabelList, XAxis, YAxis, CartesianGrid } from "recharts"
 import { BentoCardContent, BentoCardDescription, BentoCardHeader, BentoCardTitle } from "../ui/bento-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React, { useState } from "react"
 import { useCountUp } from "@/hooks/use-count-up"
+import { cn } from "@/lib/utils"
 
 const CountUpMetric = ({ to, prefix, suffix, decimals }: { to: number; prefix?: string; suffix?: string, decimals?: number }) => {
   const { count, ref } = useCountUp(to, 1000, decimals);
@@ -15,18 +17,18 @@ const CountUpMetric = ({ to, prefix, suffix, decimals }: { to: number; prefix?: 
 const scenarioData = {
   conservative: {
     waterfall: [
-      { name: 'QIA Capital Injection', value: -1000 },
-      { name: 'Gross Revenue (5-Yr)', value: 1500 },
-      { name: 'Operating Costs', value: -200 },
-      { name: 'Debt Servicing', value: -100 },
-      { name: 'Asset Appreciation', value: 400 },
+      { name: 'QIA Capital Injection', value: -500, isStart: true },
+      { name: 'Gross Revenue (5-Yr)', value: 1200 },
+      { name: 'Operating Costs', value: -400 },
+      { name: 'Debt Servicing', value: -200 },
+      { name: 'Asset Appreciation', value: 300 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
     revenueMix: [
-      { name: 'Commercial Leases', value: 35, dollarValue: 525, fill: "hsl(var(--chart-1))" },
-      { name: 'Luxury Residences', value: 25, dollarValue: 375, fill: "hsl(var(--chart-2))" },
-      { name: 'Hospitality', value: 20, dollarValue: 300, fill: "hsl(var(--chart-3))" },
-      { name: 'Tourism & Retail', value: 20, dollarValue: 300, fill: "hsl(var(--chart-4))" },
+      { name: 'Commercial Leases', value: 35, dollarValue: 420, fill: "hsl(var(--chart-1))" },
+      { name: 'Luxury Residences', value: 25, dollarValue: 300, fill: "hsl(var(--chart-2))" },
+      { name: 'Hospitality', value: 20, dollarValue: 240, fill: "hsl(var(--chart-3))" },
+      { name: 'Tourism & Retail', value: 20, dollarValue: 240, fill: "hsl(var(--chart-4))" },
     ],
     metrics: {
       irr: 18,
@@ -37,44 +39,44 @@ const scenarioData = {
   },
   base: {
     waterfall: [
-      { name: 'QIA Capital Injection', value: -1000 },
-      { name: 'Gross Revenue (5-Yr)', value: 2000 },
-      { name: 'Operating Costs', value: -250 },
-      { name: 'Debt Servicing', value: -150 },
-      { name: 'Asset Appreciation', value: 500 },
+      { name: 'QIA Capital Injection', value: -500, isStart: true },
+      { name: 'Gross Revenue (5-Yr)', value: 1500 },
+      { name: 'Operating Costs', value: -450 },
+      { name: 'Debt Servicing', value: -250 },
+      { name: 'Asset Appreciation', value: 400 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
     revenueMix: [
-      { name: 'Commercial Leases', value: 40, dollarValue: 800, fill: "hsl(var(--chart-1))" },
-      { name: 'Luxury Residences', value: 30, dollarValue: 600, fill: "hsl(var(--chart-2))" },
-      { name: 'Hospitality', value: 15, dollarValue: 300, fill: "hsl(var(--chart-3))" },
-      { name: 'Tourism & Retail', value: 15, dollarValue: 300, fill: "hsl(var(--chart-4))" },
+      { name: 'Commercial Leases', value: 40, dollarValue: 600, fill: "hsl(var(--chart-1))" },
+      { name: 'Luxury Residences', value: 30, dollarValue: 450, fill: "hsl(var(--chart-2))" },
+      { name: 'Hospitality', value: 15, dollarValue: 225, fill: "hsl(var(--chart-3))" },
+      { name: 'Tourism & Retail', value: 15, dollarValue: 225, fill: "hsl(var(--chart-4))" },
     ],
     metrics: {
       irr: 22,
-      moic: 3.5,
+      moic: 3.4,
       payback: 6.5,
       occupancy: 88,
     }
   },
   aggressive: {
     waterfall: [
-      { name: 'QIA Capital Injection', value: -1000 },
-      { name: 'Gross Revenue (5-Yr)', value: 2500 },
-      { name: 'Operating Costs', value: -300 },
-      { name: 'Debt Servicing', value: -200 },
-      { name: 'Asset Appreciation', value: 700 },
+      { name: 'QIA Capital Injection', value: -500, isStart: true },
+      { name: 'Gross Revenue (5-Yr)', value: 2000 },
+      { name: 'Operating Costs', value: -500 },
+      { name: 'Debt Servicing', value: -300 },
+      { name: 'Asset Appreciation', value: 600 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
     revenueMix: [
-      { name: 'Commercial Leases', value: 45, dollarValue: 1125, fill: "hsl(var(--chart-1))" },
-      { name: 'Luxury Residences', value: 35, dollarValue: 875, fill: "hsl(var(--chart-2))" },
-      { name: 'Hospitality', value: 12, dollarValue: 300, fill: "hsl(var(--chart-3))" },
-      { name: 'Tourism & Retail', value: 8, dollarValue: 200, fill: "hsl(var(--chart-4))" },
+      { name: 'Commercial Leases', value: 45, dollarValue: 900, fill: "hsl(var(--chart-1))" },
+      { name: 'Luxury Residences', value: 35, dollarValue: 700, fill: "hsl(var(--chart-2))" },
+      { name: 'Hospitality', value: 12, dollarValue: 240, fill: "hsl(var(--chart-3))" },
+      { name: 'Tourism & Retail', value: 8, dollarValue: 160, fill: "hsl(var(--chart-4))" },
     ],
     metrics: {
       irr: 28,
-      moic: 4.2,
+      moic: 4.6,
       payback: 5,
       occupancy: 95,
     }
@@ -84,24 +86,29 @@ const scenarioData = {
 const processWaterfallData = (data: any[]) => {
   let cumulative = 0;
   return data.map(item => {
-    if (item.isTotal) {
-      return { ...item, value: cumulative, stack: [0, cumulative] };
+    if (item.isStart) {
+      cumulative = Math.abs(item.value);
+      return { ...item, range: [0, cumulative], value: cumulative };
     }
-    const start = item.value > 0 ? cumulative : cumulative + item.value;
-    const end = Math.abs(item.value);
+    if (item.isTotal) {
+      const totalValue = cumulative;
+      return { ...item, range: [0, totalValue], value: totalValue };
+    }
+    const start = item.value >= 0 ? cumulative : cumulative + item.value;
+    const end = start + Math.abs(item.value);
     cumulative += item.value;
-    return { ...item, stack: [start, end] };
+    return { ...item, range: [start, end] };
   });
-}
+};
 
 const WaterfallTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
-    const value = item.isTotal ? `${item.value}M` : item.value > 0 ? `+${item.value}M` : `${item.value}M`;
+    const value = item.isStart ? `-$${Math.abs(item.value)}M` : item.isTotal ? `$${item.value}M` : item.value > 0 ? `+$${item.value}M` : `-$${Math.abs(item.value)}M`;
     return (
       <div className="bg-background/80 backdrop-blur-sm p-2 border border-border rounded-lg text-sm">
         <p className="font-bold">{`${label}`}</p>
-        <p className="intro" style={{color: payload[0].fill}}>{`Value: $${value}`}</p>
+        <p className="intro" style={{color: payload[0].fill}}>{`Value: ${value}`}</p>
       </div>
     );
   }
@@ -137,7 +144,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
   return (
     <>
-      <text x={x} y={y} fill="white" textAnchor={textAnchor} dominantBaseline="central" className="text-xs">
+      <text x={x} y={y} fill="hsl(var(--foreground))" textAnchor={textAnchor} dominantBaseline="central" className="text-xs" >
         {name} ({(percent * 100).toFixed(0)}%)
       </text>
       <path d={`M${lineStartX},${lineStartY}L${lineEndX},${y}`} stroke="hsl(var(--border))" fill="none" />
@@ -148,7 +155,6 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 export function RoiProjections() {
   const [scenario, setScenario] = useState<"conservative" | "base" | "aggressive">("base");
-  const { waterfall, revenueMix, metrics } = scenarioData[scenario];
 
   const renderContent = (currentScenario: "conservative" | "base" | "aggressive") => {
     const { waterfall, revenueMix, metrics } = scenarioData[currentScenario];
@@ -157,19 +163,29 @@ export function RoiProjections() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
         <div className="lg:col-span-3 h-[300px] flex flex-col">
-          <h3 className="text-center mb-2 font-semibold">Projected Net Return (Waterfall, $M)</h3>
+          <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Base Case, $M)</h3>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={processedWaterfall} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
+            <BarChart 
+              data={processedWaterfall} 
+              margin={{ top: 5, right: 20, left: 20, bottom: 20 }}
+              barGap={-1}
+            >
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
+              <XAxis dataKey="name" angle={-45} textAnchor="end" height={60} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+              <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="M" />
               <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-              <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
-                {processedWaterfall.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
-                ))}
-              </Bar>
-                <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
-                {processedWaterfall.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
-                ))}
+              <Bar dataKey="range" isAnimationActive={true}>
+                {processedWaterfall.map((entry, index) => {
+                  let color = 'transparent';
+                   if(entry.isStart || entry.isTotal) {
+                     color = 'hsl(var(--primary))'; // Blue for start/end
+                   } else if(entry.value > 0) {
+                     color = 'hsl(var(--chart-2))'; // Teal for positive
+                   } else {
+                     color = 'hsl(var(--destructive))'; // Red for negative
+                   }
+                  return <Cell key={`cell-${index}`} fill={color} />;
+                })}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -187,11 +203,11 @@ export function RoiProjections() {
               <p className="text-xs text-muted-foreground">Target MOIC</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.payback} prefix="&lt; " suffix=" Yrs" decimals={1} /></p>
+              <p className="text-2xl font-bold"><CountUpMetric to={metrics.payback} prefix="< " suffix=" Yrs" decimals={1} /></p>
               <p className="text-xs text-muted-foreground">Payback Period</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.occupancy} prefix="&gt;" suffix="%" /></p>
+              <p className="text-2xl font-bold"><CountUpMetric to={metrics.occupancy} prefix=">" suffix="%" /></p>
               <p className="text-xs text-muted-foreground">Stabilized Occupancy</p>
             </div>
           </div>
@@ -246,5 +262,7 @@ export function RoiProjections() {
     </>
   )
 }
+
+    
 
     
