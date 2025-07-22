@@ -21,7 +21,7 @@ export default function Home() {
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
         <video
           className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
-          src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
+          src="/background.mp4"
           autoPlay
           loop
           muted
