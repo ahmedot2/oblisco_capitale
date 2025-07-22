@@ -2,10 +2,9 @@ import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { ExecutionTimeline } from "@/components/dashboard/execution-timeline";
 import { OpportunityMatrix } from "@/components/dashboard/opportunity-matrix";
 import { PartnershipCard } from "@/components/dashboard/partnership-card";
-import { RiskDashboard } from "@/components/dashboard/risk-dashboard";
+import { RiskAndResilienceFramework } from "@/components/dashboard/risk-and-resilience-framework";
 import { RoiProjections } from "@/components/dashboard/roi-projections";
 import { SecureActions } from "@/components/dashboard/secure-actions";
-import { StrategicShield } from "@/components/dashboard/strategic-shield";
 import { TowerModel } from "@/components/dashboard/tower-model";
 import { UnassailableProposition } from "@/components/dashboard/unassailable-proposition";
 import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "@/components/ui/bento-card";
@@ -38,23 +37,17 @@ export default function Home() {
               </BentoCard>
             </section>
             
-            <section aria-labelledby="macroeconomic-landscape-title">
-              <h2 id="macroeconomic-landscape-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Macroeconomic Landscape</h2>
-              <BentoCard>
-                <RiskDashboard />
-              </BentoCard>
+            <section aria-labelledby="risk-resilience-framework-title">
+              <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">II. The Risk & Resilience Framework</h2>
+              <p className="text-lg text-muted-foreground mb-6">A proactive methodology for transforming systemic risk into strategic advantage.</p>
+              <RiskAndResilienceFramework />
             </section>
 
-            <section aria-labelledby="strategic-shield-title">
-              <h2 id="strategic-shield-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">III. The ARK-Diar Qatar Strategic Shield</h2>
-               <BentoCard>
-                <StrategicShield />
+            <section aria-labelledby="de-risked-execution-roadmap-title">
+              <h2 id="de-risked-execution-roadmap-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">III. A De-Risked Execution Roadmap</h2>
+              <BentoCard>
+                <ExecutionTimeline />
               </BentoCard>
-              <div className="mt-6">
-                <BentoCard>
-                  <ExecutionTimeline />
-                </BentoCard>
-              </div>
             </section>
             
             <section aria-labelledby="financial-blueprint-title">
