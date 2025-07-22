@@ -123,18 +123,26 @@ const PieTooltip = ({ active, payload }: any) => {
 };
 
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }: any) => {
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, x: origX }: any) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + (radius + 20) * Math.cos(-midAngle * RADIAN);
   const y = cy + (radius + 20) * Math.sin(-midAngle * RADIAN);
   const textAnchor = x > cx ? 'start' : 'end';
+  
+  const lineStartX = cx + (outerRadius - 10) * Math.cos(-midAngle * RADIAN);
+  const lineStartY = cy + (outerRadius - 10) * Math.sin(-midAngle * RADIAN);
+  
+  // Adjust the label's horizontal position if it's going off-screen.
+  // This is a simple heuristic; a more robust solution might need the rendered text width.
+  const labelX = textAnchor === 'end' ? Math.max(x, 10) : Math.min(x, origX*2 - 10);
+  const lineEndX = labelX + (textAnchor === 'end' ? 5 : -5);
 
   return (
     <>
-      <text x={x} y={y} fill="white" textAnchor={textAnchor} dominantBaseline="central" className="text-xs">
+      <text x={labelX} y={y} fill="white" textAnchor={textAnchor} dominantBaseline="central" className="text-xs">
         {name} ({(percent * 100).toFixed(0)}%)
       </text>
-      <path d={`M${cx + (outerRadius - 10) * Math.cos(-midAngle * RADIAN)},${cy + (outerRadius - 10) * Math.sin(-midAngle * RADIAN)}L${x},${y}`} stroke="hsl(var(--border))" fill="none" />
+      <path d={`M${lineStartX},${lineStartY}L${lineEndX},${y}`} stroke="hsl(var(--border))" fill="none" />
     </>
   );
 };
@@ -181,11 +189,11 @@ export function RoiProjections() {
               <p className="text-xs text-muted-foreground">Target MOIC</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.payback} prefix="< " suffix=" Yrs" decimals={1} /></p>
+              <p className="text-2xl font-bold"><CountUpMetric to={metrics.payback} prefix="&lt; " suffix=" Yrs" decimals={1} /></p>
               <p className="text-xs text-muted-foreground">Payback Period</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.occupancy} prefix=">" suffix="%" /></p>
+              <p className="text-2xl font-bold"><CountUpMetric to={metrics.occupancy} prefix="&gt;" suffix="%" /></p>
               <p className="text-xs text-muted-foreground">Stabilized Occupancy</p>
             </div>
           </div>
@@ -194,7 +202,7 @@ export function RoiProjections() {
         <div className="lg:col-span-2 h-[300px] flex flex-col">
           <h3 className="text-center mb-2 font-semibold">Revenue Mix</h3>
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
+            <PieChart margin={{ top: 20, right: 40, bottom: 20, left: 40 }}>
               <Tooltip content={<PieTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
               <Pie data={revenueMix} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={70} paddingAngle={5} isAnimationActive={true} label={renderCustomizedLabel} labelLine={false}>
                 {revenueMix.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} className="transition-all duration-300 ease-in-out hover:opacity-80" />)}
