@@ -34,7 +34,7 @@ export function OpportunityMatrix() {
           <span className="absolute -right-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs text-muted-foreground">High Risk</span>
 
           {/* Quadrant Labels */}
-          <span className="absolute top-1 left-1 text-xs text-green-400 font-bold">Target Zone</span>
+          <span className="absolute top-2 left-2 text-xs text-green-400 font-bold">Target Zone</span>
           
           {/* Projects */}
           <TooltipProvider>
