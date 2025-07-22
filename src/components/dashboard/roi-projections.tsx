@@ -116,10 +116,10 @@ export function RoiProjections() {
     const processedWaterfall = processWaterfallData(waterfall);
 
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[450px]">
-        <div className="lg:col-span-1 flex flex-col">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="lg:col-span-3 flex flex-col">
           <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
-          <div className="flex-grow">
+          <div className="w-full h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart 
                 data={processedWaterfall} 
@@ -148,7 +148,7 @@ export function RoiProjections() {
           </div>
         </div>
 
-        <div className="lg:col-span-1 flex flex-col justify-center p-4">
+        <div className="lg:col-span-2 flex flex-col justify-center p-4">
             <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
             <div className="space-y-4">
                 {controlBenefits.map(item => (
