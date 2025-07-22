@@ -1,3 +1,4 @@
+
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { ExecutionTimeline } from "@/components/dashboard/execution-timeline";
 import { InvestmentThesis } from "@/components/dashboard/investment-thesis";
@@ -17,7 +18,18 @@ import { NationalStrategy } from "@/components/dashboard/national-strategy";
 export default function Home() {
   return (
     <>
-      <div className="relative min-h-screen w-full bg-background bg-grid-white/[0.05]">
+      <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
+        <video
+          className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
+          src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        ></video>
+        <div className="absolute inset-0 w-full h-full bg-black/50"></div>
+      </div>
+      <div className="relative min-h-screen w-full bg-transparent bg-grid-white/[0.05]">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <DashboardHeader />
 
