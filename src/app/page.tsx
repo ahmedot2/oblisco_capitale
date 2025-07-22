@@ -27,9 +27,8 @@ export default function Home() {
           muted
           playsInline
         ></video>
-        <div className="absolute inset-0 w-full h-full bg-black/50"></div>
       </div>
-      <div className="relative min-h-screen w-full bg-transparent bg-grid-white/[0.05]">
+      <div className="relative min-h-screen w-full bg-transparent">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <DashboardHeader />
 
