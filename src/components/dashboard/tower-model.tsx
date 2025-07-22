@@ -95,7 +95,7 @@ export function TowerModel() {
   return (
     <div className="w-full h-full flex flex-col bg-white/5 p-4 rounded-lg border border-white/10">
       <BentoCardHeader className="p-0">
-        <BentoCardTitle className="font-headline text-base">A Generational Asset Secured by an Unrivaled Partnership</BentoCardTitle>
+        <BentoCardTitle className="font-headline text-base">The Iconic Centerpiece</BentoCardTitle>
       </BentoCardHeader>
       <BentoCardContent className="flex-grow relative p-0 mt-4">
         <div ref={mountRef} className="absolute inset-0" />

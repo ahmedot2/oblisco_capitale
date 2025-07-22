@@ -29,7 +29,10 @@ export default function Home() {
 
             <section aria-labelledby="strategic-imperative-title">
               <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
-              <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
+               <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
+                <BentoCardHeader className="p-0 mb-6 text-center">
+                  <BentoCardTitle className="font-headline text-2xl">A Generational Asset Secured by an Unrivaled Partnership</BentoCardTitle>
+                </BentoCardHeader>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
                   <div className="lg:col-span-1 h-full flex flex-col">
                     <TowerModel />
