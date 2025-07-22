@@ -112,38 +112,40 @@ export function RoiProjections() {
   const [scenario, setScenario] = useState<"conservative" | "base" | "aggressive">("base");
 
   const renderContent = (currentScenario: "conservative" | "base" | "aggressive") => {
-    const { waterfall, metrics } = scenarioData[currentScenario];
+    const { waterfall } = scenarioData[currentScenario];
     const processedWaterfall = processWaterfallData(waterfall);
 
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="lg:col-span-1 flex flex-col h-[400px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[450px]">
+        <div className="lg:col-span-1 flex flex-col">
           <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart 
-              data={processedWaterfall} 
-              margin={{ top: 5, right: 20, left: 20, bottom: 40 }}
-              barGap={-1}
-            >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
-              <XAxis dataKey="name" angle={-30} textAnchor="end" height={80} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
-              <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="B" />
-              <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-              <Bar dataKey="range" isAnimationActive={true}>
-                {processedWaterfall.map((entry, index) => {
-                  let color = 'transparent';
-                   if(entry.isStart || entry.isTotal) {
-                     color = 'hsl(var(--primary))'; // Blue for start/end
-                   } else if(entry.value > 0) {
-                     color = 'hsl(var(--chart-2))'; // Teal for positive
-                   } else {
-                     color = 'hsl(var(--destructive))'; // Red for negative
-                   }
-                  return <Cell key={`cell-${index}`} fill={color} />;
-                })}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="flex-grow">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart 
+                data={processedWaterfall} 
+                margin={{ top: 5, right: 20, left: 20, bottom: 40 }}
+                barGap={-1}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
+                <XAxis dataKey="name" angle={-30} textAnchor="end" height={80} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="B" />
+                <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
+                <Bar dataKey="range" isAnimationActive={true}>
+                  {processedWaterfall.map((entry, index) => {
+                    let color = 'transparent';
+                    if(entry.isStart || entry.isTotal) {
+                      color = 'hsl(var(--primary))'; // Blue for start/end
+                    } else if(entry.value > 0) {
+                      color = 'hsl(var(--chart-2))'; // Teal for positive
+                    } else {
+                      color = 'hsl(var(--destructive))'; // Red for negative
+                    }
+                    return <Cell key={`cell-${index}`} fill={color} />;
+                  })}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
         <div className="lg:col-span-1 flex flex-col justify-center p-4">
