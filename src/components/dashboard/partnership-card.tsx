@@ -15,19 +15,19 @@ export function PartnershipCard() {
   ];
 
   return (
-    <>
-      <BentoCardHeader>
-        <BentoCardTitle className="font-headline">Synergistic Partnership</BentoCardTitle>
+    <div className="w-full h-full flex flex-col bg-white/5 p-4 rounded-lg border border-white/10">
+      <BentoCardHeader className="p-0">
+        <BentoCardTitle className="font-headline text-base">Synergistic Partnership</BentoCardTitle>
         <BentoCardDescription>A consortium built for success.</BentoCardDescription>
       </BentoCardHeader>
-      <BentoCardContent>
+      <BentoCardContent className="flex-grow flex flex-col justify-center p-0 mt-4">
         <div className="flex items-center justify-around gap-4 my-4">
           {partners.map((p, i) => (
             <div key={p.name} className="text-center">
               <div className="p-3 bg-primary/10 rounded-lg inline-block">
                 <Building className="w-6 h-6 text-primary" />
               </div>
-              <p className="font-bold mt-2">{p.name}</p>
+              <p className="font-bold mt-2 text-sm">{p.name}</p>
               <p className="text-xs text-muted-foreground">{p.description}</p>
             </div>
           ))}
@@ -36,7 +36,7 @@ export function PartnershipCard() {
             <div className="p-3 bg-green-500/10 rounded-lg inline-block">
               <Users className="w-6 h-6 text-green-400" />
             </div>
-            <p className="font-bold mt-2">QIA</p>
+            <p className="font-bold mt-2 text-sm">QIA</p>
             <p className="text-xs text-muted-foreground">Strategic Investor</p>
           </div>
         </div>
@@ -50,6 +50,6 @@ export function PartnershipCard() {
           ))}
         </div>
       </BentoCardContent>
-    </>
+    </div>
   );
 }

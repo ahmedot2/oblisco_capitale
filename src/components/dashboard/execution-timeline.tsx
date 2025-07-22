@@ -11,7 +11,7 @@ export function ExecutionTimeline() {
   return (
     <>
       <BentoCardHeader>
-        <BentoCardTitle className="font-headline">Execution Timeline</BentoCardTitle>
+        <BentoCardTitle className="font-headline">A De-Risked Execution Roadmap</BentoCardTitle>
         <BentoCardDescription>A phased approach ensuring on-time, on-budget delivery.</BentoCardDescription>
       </BentoCardHeader>
       <BentoCardContent>

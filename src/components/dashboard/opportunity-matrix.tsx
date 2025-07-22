@@ -10,13 +10,13 @@ export function OpportunityMatrix() {
   ];
 
   return (
-    <>
-      <BentoCardHeader>
-        <BentoCardTitle className="font-headline">Opportunity Matrix</BentoCardTitle>
+    <div className="w-full h-full flex flex-col bg-white/5 p-4 rounded-lg border border-white/10">
+      <BentoCardHeader className="p-0">
+        <BentoCardTitle className="font-headline text-base">Opportunity Matrix</BentoCardTitle>
         <BentoCardDescription>Strategic Impact vs. Macro Risk</BentoCardDescription>
       </BentoCardHeader>
-      <BentoCardContent>
-        <div className="relative w-full aspect-square">
+      <BentoCardContent className="flex-grow flex items-center justify-center p-0 mt-4">
+        <div className="relative w-full aspect-square max-w-[250px]">
           {/* Axes */}
           <div className="absolute inset-0 flex">
             <div className="w-1/2 h-full border-r border-dashed border-white/20"></div>
@@ -57,6 +57,6 @@ export function OpportunityMatrix() {
           </TooltipProvider>
         </div>
       </BentoCardContent>
-    </>
+    </div>
   );
 }
