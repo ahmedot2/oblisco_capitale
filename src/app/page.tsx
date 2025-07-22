@@ -1,5 +1,6 @@
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { ExecutionTimeline } from "@/components/dashboard/execution-timeline";
+import { InvestmentThesis } from "@/components/dashboard/investment-thesis";
 import { OpportunityMatrix } from "@/components/dashboard/opportunity-matrix";
 import { PartnershipCard } from "@/components/dashboard/partnership-card";
 import { RiskAndResilienceFramework } from "@/components/dashboard/risk-and-resilience-framework";
@@ -20,6 +21,12 @@ export default function Home() {
           <DashboardHeader />
 
           <div className="mt-12 space-y-20">
+
+            <section aria-labelledby="investment-thesis-title">
+              <h2 id="investment-thesis-title" className="text-center text-lg font-semibold text-muted-foreground mb-6">The Investment Thesis</h2>
+              <InvestmentThesis />
+            </section>
+
             <section aria-labelledby="strategic-imperative-title">
               <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
               <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
