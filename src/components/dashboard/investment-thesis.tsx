@@ -2,30 +2,28 @@ import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "..
 import { Building, DollarSign, ShieldCheck, TrendingUp } from "lucide-react";
 
 const metrics = [
+  { value: "$3B", label: "Sole Capital Mandate", icon: <DollarSign className="w-6 h-6 text-primary" /> },
   { value: "1,000m", label: "Iconic Height", icon: <Building className="w-6 h-6 text-primary" /> },
-  { value: "$3B", label: "Total CBD Project Scale", icon: <DollarSign className="w-6 h-6 text-primary" /> },
-  { value: "$35B", label: "Ras El Hekma Deal", sublabel: "(Validates Market Confidence)", icon: <ShieldCheck className="w-6 h-6 text-primary" /> },
-  { value: ">20%", label: "Target IRR", sublabel: "(USD-Denominated)", icon: <TrendingUp className="w-6 h-6 text-primary" /> },
+  { value: ">18%", label: "Target Project IRR (USD)", icon: <TrendingUp className="w-6 h-6 text-primary" /> },
+  { value: "~40%", label: "Commanding Equity Stake", icon: <ShieldCheck className="w-6 h-6 text-primary" /> },
 ];
 
 export function InvestmentThesis() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {/* Card 1: The Proposal */}
       <BentoCard className="lg:col-span-1">
         <BentoCardHeader>
           <BentoCardTitle className="font-headline text-xl">
-            A Strategic Entry into Egypt's Future
+            A Sovereign Mandate to Secure an Icon
           </BentoCardTitle>
         </BentoCardHeader>
         <BentoCardContent>
           <p className="text-muted-foreground">
-            This proposal outlines a generational opportunity to secure a commanding position in a landmark asset. The project's complex macroeconomic environment has created a unique barrier to entry, which we transform into a superior risk-adjusted return through the exclusive ARK-Diar Qatar partnership.
+            This proposal outlines a generational opportunity for QIA to fully fund the $3B Oblisco Capitale and its surrounding CBD, securing complete financial control over a landmark national asset. This is a direct pathway to establishing a new pillar of Qatari economic influence in North Africa.
           </p>
         </BentoCardContent>
       </BentoCard>
 
-      {/* Card 2: The Opportunity by the Numbers */}
       <BentoCard className="lg:col-span-1">
         <BentoCardHeader>
           <BentoCardTitle className="font-headline text-xl">
@@ -48,7 +46,6 @@ export function InvestmentThesis() {
         </BentoCardContent>
       </BentoCard>
       
-      {/* Card 3: The Ask & The Vehicle */}
       <BentoCard className="lg:col-span-1">
         <BentoCardHeader>
           <BentoCardTitle className="font-headline text-xl">
@@ -58,11 +55,11 @@ export function InvestmentThesis() {
         <BentoCardContent className="space-y-4">
           <div>
             <h4 className="font-semibold text-primary">The Ask:</h4>
-            <p className="text-muted-foreground">A strategic capital injection for a commanding equity position.</p>
+            <p className="text-muted-foreground">$3 Billion Sole Funding Mandate.</p>
           </div>
           <div>
             <h4 className="font-semibold text-primary">The Vehicle:</h4>
-            <p className="text-muted-foreground">The ARK & Diar Qatar partnership—the sole pathway to de-risk execution and guarantee world-class delivery.</p>
+            <p className="text-muted-foreground">The ARK & Diar Qatar partnership—the essential execution vehicle to de-risk and deliver the entire project on behalf of QIA, guaranteeing Qatari standards of excellence.</p>
           </div>
         </BentoCardContent>
       </BentoCard>

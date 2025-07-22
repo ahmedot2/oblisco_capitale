@@ -1,13 +1,12 @@
 
-
 "use client"
 
-import { Bar, BarChart, Pie, PieChart, ResponsiveContainer, Cell, Tooltip, LabelList, XAxis, YAxis, CartesianGrid } from "recharts"
-import { BentoCardContent, BentoCardDescription, BentoCardHeader, BentoCardTitle } from "../ui/bento-card"
+import { Bar, BarChart, ResponsiveContainer, Cell, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts"
+import { BentoCard, BentoCardContent, BentoCardDescription, BentoCardHeader, BentoCardTitle } from "../ui/bento-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React, { useState } from "react"
 import { useCountUp } from "@/hooks/use-count-up"
-import { cn } from "@/lib/utils"
+import { Crown, Shield, HardHat } from "lucide-react"
 
 const CountUpMetric = ({ to, prefix, suffix, decimals }: { to: number; prefix?: string; suffix?: string, decimals?: number }) => {
   const { count, ref } = useCountUp(to, 1000, decimals);
@@ -17,68 +16,44 @@ const CountUpMetric = ({ to, prefix, suffix, decimals }: { to: number; prefix?: 
 const scenarioData = {
   conservative: {
     waterfall: [
-      { name: 'QIA Capital Injection', value: -500, isStart: true },
-      { name: 'Gross Revenue (5-Yr)', value: 1200 },
-      { name: 'Operating Costs', value: -400 },
-      { name: 'Debt Servicing', value: -200 },
-      { name: 'Asset Appreciation', value: 300 },
+      { name: 'QIA Sole Capital Mandate', value: -3.0, isStart: true },
+      { name: 'Gross Revenue (5-Yr)', value: 7.2 },
+      { name: 'Operating Costs', value: -2.4 },
+      { name: 'Debt Servicing', value: -1.2 },
+      { name: 'Asset Appreciation', value: 1.8 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
-    revenueMix: [
-      { name: 'Commercial Leases', value: 35, dollarValue: 420, fill: "hsl(var(--chart-1))" },
-      { name: 'Luxury Residences', value: 25, dollarValue: 300, fill: "hsl(var(--chart-2))" },
-      { name: 'Hospitality', value: 20, dollarValue: 240, fill: "hsl(var(--chart-3))" },
-      { name: 'Tourism & Retail', value: 20, dollarValue: 240, fill: "hsl(var(--chart-4))" },
-    ],
     metrics: {
-      irr: 18,
-      moic: 2.8,
-      payback: 8,
-      occupancy: 80,
+      irr: 15.5,
+      moic: 2.5,
     }
   },
   base: {
     waterfall: [
-      { name: 'QIA Capital Injection', value: -500, isStart: true },
-      { name: 'Gross Revenue (5-Yr)', value: 1500 },
-      { name: 'Operating Costs', value: -450 },
-      { name: 'Debt Servicing', value: -250 },
-      { name: 'Asset Appreciation', value: 400 },
+      { name: 'QIA Sole Capital Mandate', value: -3.0, isStart: true },
+      { name: 'Gross Revenue (5-Yr)', value: 9.0 },
+      { name: 'Operating Costs', value: -2.7 },
+      { name: 'Debt Servicing', value: -1.5 },
+      { name: 'Asset Appreciation', value: 2.4 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
-    revenueMix: [
-      { name: 'Commercial Leases', value: 40, dollarValue: 600, fill: "hsl(var(--chart-1))" },
-      { name: 'Luxury Residences', value: 30, dollarValue: 450, fill: "hsl(var(--chart-2))" },
-      { name: 'Hospitality', value: 15, dollarValue: 225, fill: "hsl(var(--chart-3))" },
-      { name: 'Tourism & Retail', value: 15, dollarValue: 225, fill: "hsl(var(--chart-4))" },
-    ],
     metrics: {
-      irr: 22,
-      moic: 3.4,
-      payback: 6.5,
-      occupancy: 88,
+      irr: 18.2,
+      moic: 2.8,
     }
   },
   aggressive: {
     waterfall: [
-      { name: 'QIA Capital Injection', value: -500, isStart: true },
-      { name: 'Gross Revenue (5-Yr)', value: 2000 },
-      { name: 'Operating Costs', value: -500 },
-      { name: 'Debt Servicing', value: -300 },
-      { name: 'Asset Appreciation', value: 600 },
+      { name: 'QIA Sole Capital Mandate', value: -3.0, isStart: true },
+      { name: 'Gross Revenue (5-Yr)', value: 12.0 },
+      { name: 'Operating Costs', value: -3.0 },
+      { name: 'Debt Servicing', value: -1.8 },
+      { name: 'Asset Appreciation', value: 3.6 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
-    revenueMix: [
-      { name: 'Commercial Leases', value: 45, dollarValue: 900, fill: "hsl(var(--chart-1))" },
-      { name: 'Luxury Residences', value: 35, dollarValue: 700, fill: "hsl(var(--chart-2))" },
-      { name: 'Hospitality', value: 12, dollarValue: 240, fill: "hsl(var(--chart-3))" },
-      { name: 'Tourism & Retail', value: 8, dollarValue: 160, fill: "hsl(var(--chart-4))" },
-    ],
     metrics: {
-      irr: 28,
-      moic: 4.6,
-      payback: 5,
-      occupancy: 95,
+      irr: 22.5,
+      moic: 3.6,
     }
   },
 };
@@ -104,7 +79,7 @@ const processWaterfallData = (data: any[]) => {
 const WaterfallTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
-    const value = item.isStart ? `-$${Math.abs(item.value)}M` : item.isTotal ? `$${item.value}M` : item.value > 0 ? `+$${item.value}M` : `-$${Math.abs(item.value)}M`;
+    const value = item.isStart ? `-$${Math.abs(item.value).toFixed(1)}B` : item.isTotal ? `$${item.value.toFixed(1)}B` : item.value > 0 ? `+$${item.value.toFixed(1)}B` : `-$${Math.abs(item.value).toFixed(1)}B`;
     return (
       <div className="bg-background/80 backdrop-blur-sm p-2 border border-border rounded-lg text-sm">
         <p className="font-bold">{`${label}`}</p>
@@ -115,64 +90,44 @@ const WaterfallTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const PieTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    const data = payload[0].payload;
-    return (
-      <div className="bg-background/80 backdrop-blur-sm p-2 border border-border rounded-lg text-sm">
-        <p className="font-bold" style={{ color: data.fill }}>
-          {`${data.name}: ${data.value}%`}
-        </p>
-        <p className="text-muted-foreground">Projected Revenue: ${data.dollarValue}M</p>
-      </div>
-    );
-  }
-  return null;
-};
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }: any) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + (radius + 25) * Math.cos(-midAngle * RADIAN);
-  const y = cy + (radius + 25) * Math.sin(-midAngle * RADIAN);
-  const textAnchor = x > cx ? 'start' : 'end';
-  
-  const lineStartX = cx + (outerRadius) * Math.cos(-midAngle * RADIAN);
-  const lineStartY = cy + (outerRadius) * Math.sin(-midAngle * RADIAN);
-  
-  const lineEndX = x + (textAnchor === 'start' ? -5 : 5);
-
-  return (
-    <>
-      <text x={x} y={y} fill="hsl(var(--foreground))" textAnchor={textAnchor} dominantBaseline="central" className="text-xs" >
-        {name} ({(percent * 100).toFixed(0)}%)
-      </text>
-      <path d={`M${lineStartX},${lineStartY}L${lineEndX},${y}`} stroke="hsl(var(--border))" fill="none" />
-    </>
-  );
-};
-
+const controlBenefits = [
+    {
+      title: "Commanding Equity & Control",
+      icon: <Crown className="w-8 h-8 text-primary" />,
+      text: "A ~40% equity stake in the entire CBD, including the Oblisco Tower. Provides QIA with board representation and key decision-making rights on the project's future."
+    },
+    {
+      title: "Priority Profit Repatriation",
+      icon: <Shield className="w-8 h-8 text-primary" />,
+      text: "Ironclad, treaty-level agreements ensuring QIA's capital and profits have first-priority access to repatriation in hard currency, guaranteed by the Egyptian sovereign."
+    },
+    {
+      title: "The Diar Qatar Value-Add",
+      icon: <HardHat className="w-8 h-8 text-primary" />,
+      text: "Direct management and construction oversight by Diar Qatar ensures the asset is built to Qatar's world-class standards, maximizing its long-term value and operational excellence."
+    }
+]
 
 export function RoiProjections() {
   const [scenario, setScenario] = useState<"conservative" | "base" | "aggressive">("base");
 
   const renderContent = (currentScenario: "conservative" | "base" | "aggressive") => {
-    const { waterfall, revenueMix, metrics } = scenarioData[currentScenario];
+    const { waterfall, metrics } = scenarioData[currentScenario];
     const processedWaterfall = processWaterfallData(waterfall);
 
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
-        <div className="lg:col-span-3 h-[300px] flex flex-col">
-          <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Base Case, $M)</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="lg:col-span-1 h-[350px] flex flex-col">
+          <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
               data={processedWaterfall} 
-              margin={{ top: 5, right: 20, left: 20, bottom: 20 }}
+              margin={{ top: 5, right: 20, left: 20, bottom: 40 }}
               barGap={-1}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.5)" />
-              <XAxis dataKey="name" angle={-45} textAnchor="end" height={60} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
-              <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="M" />
+              <XAxis dataKey="name" angle={-30} textAnchor="end" height={80} interval={0} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+              <YAxis axisLine={false} tickLine={false} tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} unit="B" />
               <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
               <Bar dataKey="range" isAnimationActive={true}>
                 {processedWaterfall.map((entry, index) => {
@@ -191,38 +146,19 @@ export function RoiProjections() {
           </ResponsiveContainer>
         </div>
 
-        <div className="lg:col-span-2 h-[300px] flex flex-col justify-center items-center p-4 bg-white/5 rounded-lg border border-white/10">
-          <h3 className="mb-4 font-semibold text-center">Key Financial Metrics</h3>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-4 w-full">
-            <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.irr} suffix="%" decimals={1} /></p>
-              <p className="text-xs text-muted-foreground">Target IRR (USD)</p>
+        <div className="lg:col-span-1 flex flex-col justify-center p-4">
+            <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
+            <div className="space-y-4">
+                {controlBenefits.map(item => (
+                    <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
+                        <div className="text-primary mt-1">{item.icon}</div>
+                        <div>
+                            <h4 className="font-semibold text-sm">{item.title}</h4>
+                            <p className="text-xs text-muted-foreground">{item.text}</p>
+                        </div>
+                    </BentoCard>
+                ))}
             </div>
-             <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.moic} suffix="x" decimals={1} /></p>
-              <p className="text-xs text-muted-foreground">Target MOIC</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.payback} prefix="< " suffix=" Yrs" decimals={1} /></p>
-              <p className="text-xs text-muted-foreground">Payback Period</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl font-bold"><CountUpMetric to={metrics.occupancy} prefix=">" suffix="%" /></p>
-              <p className="text-xs text-muted-foreground">Stabilized Occupancy</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="lg:col-span-2 h-[300px] flex flex-col">
-          <h3 className="text-center mb-2 font-semibold">Revenue Mix</h3>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart margin={{ top: 20, right: 60, bottom: 20, left: 60 }}>
-              <Tooltip content={<PieTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-              <Pie data={revenueMix} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={50} outerRadius={70} paddingAngle={5} isAnimationActive={true} label={renderCustomizedLabel} labelLine={false}>
-                {revenueMix.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} className="transition-all duration-300 ease-in-out hover:opacity-80" />)}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
         </div>
       </div>
     );
@@ -232,8 +168,8 @@ export function RoiProjections() {
   return (
     <>
       <BentoCardHeader>
-        <BentoCardTitle className="font-headline">The Financial Engine</BentoCardTitle>
-        <BentoCardDescription>Interactive financial model projecting returns and revenue streams.</BentoCardDescription>
+        <BentoCardTitle className="font-headline">The Sovereign Return Proposition</BentoCardTitle>
+        <BentoCardDescription>Interactive financial model projecting returns under the full mandate.</BentoCardDescription>
       </BentoCardHeader>
       <BentoCardContent>
         <Tabs 
@@ -262,7 +198,3 @@ export function RoiProjections() {
     </>
   )
 }
-
-    
-
-    
