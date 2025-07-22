@@ -3,6 +3,7 @@
 import { Bar, BarChart, Pie, PieChart, ResponsiveContainer, Cell, Tooltip } from "recharts"
 import { BentoCardContent, BentoCardDescription, BentoCardHeader, BentoCardTitle } from "../ui/bento-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react"
 
 const waterfallDataConservative = [
   { name: 'Initial Investment', value: -1000 },
@@ -44,21 +45,36 @@ const processWaterfallData = (data: any[]) => {
   });
 }
 
-const revenueMixData = [
-  { name: 'Residential Sales', value: 45, fill: "hsl(var(--chart-1))" },
-  { name: 'Commercial Lease', value: 30, fill: "hsl(var(--chart-2))" },
-  { name: 'Hospitality', value: 15, fill: "hsl(var(--chart-3))" },
-  { name: 'Retail & F&B', value: 10, fill: "hsl(var(--chart-4))" },
-]
+const revenueMixScenarios = {
+  conservative: [
+    { name: 'Residential Sales', value: 40, fill: "hsl(var(--chart-1))" },
+    { name: 'Commercial Lease', value: 35, fill: "hsl(var(--chart-2))" },
+    { name: 'Hospitality', value: 15, fill: "hsl(var(--chart-3))" },
+    { name: 'Retail & F&B', value: 10, fill: "hsl(var(--chart-4))" },
+  ],
+  base: [
+    { name: 'Residential Sales', value: 45, fill: "hsl(var(--chart-1))" },
+    { name: 'Commercial Lease', value: 30, fill: "hsl(var(--chart-2))" },
+    { name: 'Hospitality', value: 15, fill: "hsl(var(--chart-3))" },
+    { name: 'Retail & F&B', value: 10, fill: "hsl(var(--chart-4))" },
+  ],
+  aggressive: [
+    { name: 'Residential Sales', value: 50, fill: "hsl(var(--chart-1))" },
+    { name: 'Commercial Lease', value: 25, fill: "hsl(var(--chart-2))" },
+    { name: 'Hospitality', value: 18, fill: "hsl(var(--chart-3))" },
+    { name: 'Retail & F&B', value: 7, fill: "hsl(var(--chart-4))" },
+  ],
+};
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+
+const WaterfallTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     const value = item.isTotal ? item.value : item.value > 0 ? `+${item.value}M` : `${item.value}M`;
     return (
       <div className="bg-background/80 backdrop-blur-sm p-2 border border-border rounded-lg text-sm">
         <p className="label font-bold">{`${label}`}</p>
-        <p className="intro" style={{color: payload[0].color}}>{`Value: ${value}`}</p>
+        <p className="intro" style={{color: payload[0].fill}}>{`Value: ${value}`}</p>
       </div>
     );
   }
@@ -66,7 +82,25 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
+const PieTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="bg-background/80 backdrop-blur-sm p-2 border border-border rounded-lg text-sm">
+        <p className="font-bold" style={{ color: data.fill }}>
+          {`${data.name}: ${data.value}%`}
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
+
 export function RoiProjections() {
+  const [scenario, setScenario] = useState<"conservative" | "base" | "aggressive">("base");
+  const revenueMixData = revenueMixScenarios[scenario];
+
   return (
     <>
       <BentoCardHeader>
@@ -74,7 +108,11 @@ export function RoiProjections() {
         <BentoCardDescription>Projected returns across multiple strategic scenarios.</BentoCardDescription>
       </BentoCardHeader>
       <BentoCardContent>
-        <Tabs defaultValue="base" className="w-full">
+        <Tabs 
+          defaultValue="base" 
+          className="w-full"
+          onValueChange={(value) => setScenario(value as "conservative" | "base" | "aggressive")}
+        >
           <div className="flex justify-center mb-6">
             <TabsList>
               <TabsTrigger value="conservative">Conservative</TabsTrigger>
@@ -85,60 +123,64 @@ export function RoiProjections() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 h-[300px]">
               <h3 className="text-center mb-2 font-semibold">Projected Net Return (Waterfall)</h3>
-              <ResponsiveContainer width="100%" height="100%">
-                <TabsContent value="conservative" className="w-full h-full">
-                  <BarChart data={processWaterfallData(waterfallDataConservative)}>
-                    <Tooltip content={<CustomTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-                    <Bar dataKey="stack" stackId="a">
-                      {processWaterfallData(waterfallDataConservative).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
-                      ))}
-                    </Bar>
-                     <Bar dataKey="stack" stackId="a">
-                      {processWaterfallData(waterfallDataConservative).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
+                <TabsContent value="conservative" className="w-full h-full m-0">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={processWaterfallData(waterfallDataConservative)} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
+                      <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
+                      <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
+                        {processWaterfallData(waterfallDataConservative).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
+                        ))}
+                      </Bar>
+                       <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
+                        {processWaterfallData(waterfallDataConservative).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
                 </TabsContent>
-                <TabsContent value="base" className="w-full h-full">
-                   <BarChart data={processWaterfallData(waterfallDataBase)}>
-                    <Tooltip content={<CustomTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-                    <Bar dataKey="stack" stackId="a">
-                      {processWaterfallData(waterfallDataBase).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
-                      ))}
-                    </Bar>
-                     <Bar dataKey="stack" stackId="a">
-                      {processWaterfallData(waterfallDataBase).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
+                <TabsContent value="base" className="w-full h-full m-0">
+                  <ResponsiveContainer width="100%" height="100%">
+                     <BarChart data={processWaterfallData(waterfallDataBase)} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
+                      <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
+                      <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
+                        {processWaterfallData(waterfallDataBase).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
+                        ))}
+                      </Bar>
+                       <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
+                        {processWaterfallData(waterfallDataBase).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
                 </TabsContent>
-                 <TabsContent value="aggressive" className="w-full h-full">
-                   <BarChart data={processWaterfallData(waterfallDataAggressive)}>
-                    <Tooltip content={<CustomTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-                    <Bar dataKey="stack" stackId="a">
-                      {processWaterfallData(waterfallDataAggressive).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
-                      ))}
-                    </Bar>
-                     <Bar dataKey="stack" stackId="a">
-                      {processWaterfallData(waterfallDataAggressive).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
+                 <TabsContent value="aggressive" className="w-full h-full m-0">
+                  <ResponsiveContainer width="100%" height="100%">
+                     <BarChart data={processWaterfallData(waterfallDataAggressive)} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
+                      <Tooltip content={<WaterfallTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
+                      <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
+                        {processWaterfallData(waterfallDataAggressive).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} fillOpacity={entry.stack[0] === 0 && !entry.isTotal ? 1 : 0} />
+                        ))}
+                      </Bar>
+                       <Bar dataKey="stack" stackId="a" isAnimationActive={true}>
+                        {processWaterfallData(waterfallDataAggressive).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isTotal ? 'hsl(var(--primary))' : entry.value > 0 ? 'hsl(var(--chart-2))' : 'hsl(var(--destructive))'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
                 </TabsContent>
-              </ResponsiveContainer>
             </div>
             <div className="h-[300px]">
               <h3 className="text-center mb-2 font-semibold">Revenue Mix</h3>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                   <Tooltip cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
-                  <Pie data={revenueMixData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} >
+                   <Tooltip content={<PieTooltip />} cursor={{fill: 'hsla(var(--primary) / 0.1)'}}/>
+                  <Pie data={revenueMixData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} isAnimationActive={true}>
                     {revenueMixData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
                   </Pie>
                 </PieChart>
