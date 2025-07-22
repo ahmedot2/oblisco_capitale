@@ -5,13 +5,7 @@ import { Bar, BarChart, ResponsiveContainer, Cell, Tooltip, XAxis, YAxis, Cartes
 import { BentoCard, BentoCardContent, BentoCardDescription, BentoCardHeader, BentoCardTitle } from "../ui/bento-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React, { useState } from "react"
-import { useCountUp } from "@/hooks/use-count-up"
 import { Crown, Shield, HardHat } from "lucide-react"
-
-const CountUpMetric = ({ to, prefix, suffix, decimals }: { to: number; prefix?: string; suffix?: string, decimals?: number }) => {
-  const { count, ref } = useCountUp(to, 1000, decimals);
-  return <span ref={ref}>{prefix}{count}{suffix}</span>;
-}
 
 const scenarioData = {
   conservative: {
@@ -23,10 +17,6 @@ const scenarioData = {
       { name: 'Asset Appreciation', value: 1.8 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
-    metrics: {
-      irr: 15.5,
-      moic: 2.5,
-    }
   },
   base: {
     waterfall: [
@@ -37,10 +27,6 @@ const scenarioData = {
       { name: 'Asset Appreciation', value: 2.4 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
-    metrics: {
-      irr: 18.2,
-      moic: 2.8,
-    }
   },
   aggressive: {
     waterfall: [
@@ -51,10 +37,6 @@ const scenarioData = {
       { name: 'Asset Appreciation', value: 3.6 },
       { name: 'Net Profit & Return', isTotal: true },
     ],
-    metrics: {
-      irr: 22.5,
-      moic: 3.6,
-    }
   },
 };
 
