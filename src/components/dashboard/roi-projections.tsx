@@ -117,7 +117,7 @@ export function RoiProjections() {
 
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="lg:col-span-1 h-[350px] flex flex-col">
+        <div className="lg:col-span-1 flex flex-col min-h-[350px]">
           <h3 className="text-center mb-2 font-semibold">Projected Financial Bridge (Full Mandate, $B)</h3>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
