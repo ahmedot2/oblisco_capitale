@@ -1,4 +1,6 @@
 
+'use client';
+
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { ExecutionTimeline } from "@/components/dashboard/execution-timeline";
 import { InvestmentThesis } from "@/components/dashboard/investment-thesis";
@@ -15,6 +17,8 @@ import { BriefingModal } from "@/components/modals/briefing-modal";
 import { VaultModal } from "@/components/modals/vault-modal";
 import { NationalStrategy } from "@/components/dashboard/national-strategy";
 import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
+import { motion } from "framer-motion";
+
 
 export default function Home() {
   return (
@@ -28,13 +32,18 @@ export default function Home() {
             muted
             playsInline
           ></video>
-        <div className="absolute inset-0 w-full h-full bg-black/50 bg-grid-white/[0.05]"></div>
+        <div className="absolute inset-0 w-full h-full bg-black/50"></div>
       </div>
       <div className="relative min-h-screen w-full">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <DashboardHeader />
 
-          <div className="mt-12 space-y-20">
+          <motion.div 
+            className="mt-12 space-y-20"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+          >
 
             <section aria-labelledby="investment-thesis-title">
               <h2 id="investment-thesis-title" className="text-center text-lg font-semibold text-muted-foreground mb-6">The Investment Thesis</h2>
@@ -110,7 +119,7 @@ export default function Home() {
               </div>
             </section>
 
-          </div>
+          </motion.div>
         </main>
       </div>
       <SecureActions />
