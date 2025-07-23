@@ -17,7 +17,7 @@ export function DashboardHeader() {
         </div>
       </motion.div>
       <motion.h1 
-        className="text-4xl md:text-6xl font-extrabold font-headline tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400"
+        className="text-6xl md:text-9xl font-extrabold font-headline tracking-tight uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
@@ -26,7 +26,7 @@ export function DashboardHeader() {
       </motion.h1>
       <motion.p 
         className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground"
-        initial={{ opacity: 0, y: -50 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
       >
