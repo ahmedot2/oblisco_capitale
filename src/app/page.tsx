@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { BriefingModal } from "@/components/modals/briefing-modal";
 import { VaultModal } from "@/components/modals/vault-modal";
 import { NationalStrategy } from "@/components/dashboard/national-strategy";
+import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 
 export default function Home() {
   return (
@@ -84,14 +85,20 @@ export default function Home() {
               <h2 id="national-strategy-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">V. A Pillar of National Strategy</h2>
               <NationalStrategy />
             </section>
+
+            <section aria-labelledby="strategic-inquiries-title">
+              <h2 id="strategic-inquiries-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VI. Strategic Inquiries</h2>
+              <p className="text-lg text-muted-foreground mb-6">Anticipating the core questions of a decisive partner.</p>
+              <StrategicInquiries />
+            </section>
             
             <section aria-labelledby="unassailable-proposition-title">
-              <h2 id="unassailable-proposition-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">VI. The Unassailable Proposition</h2>
+              <h2 id="unassailable-proposition-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">VII. The Unassailable Proposition</h2>
               <UnassailableProposition />
             </section>
 
             <section aria-labelledby="call-to-action-title" className="text-center">
-              <h2 id="call-to-action-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VII. The Call to Action</h2>
+              <h2 id="call-to-action-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VIII. The Call to Action</h2>
               <p className="text-lg text-muted-foreground mb-8">Seizing the Future. A Definitive Opportunity for a Decisive Partner.</p>
               <div className="flex justify-center gap-4">
                 <BriefingModal>
