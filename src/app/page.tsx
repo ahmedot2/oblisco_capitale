@@ -108,13 +108,17 @@ export default function Home() {
 
             <section aria-labelledby="call-to-action-title" className="text-center py-20">
               <h2 id="call-to-action-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">VIII. Seizing a Generational Mandate</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to&nbsp;
-                <BriefingModal>
-                  <span className="text-primary font-semibold hover:underline cursor-pointer">begin the conversation</span>
-                </BriefingModal>
-                &nbsp;that will shape the skyline of the future.
-              </p>
+               <BentoCard className="max-w-3xl mx-auto">
+                <BentoCardContent className="p-6 text-center">
+                  <p className="text-lg text-muted-foreground text-justify">
+                    The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to&nbsp;
+                    <BriefingModal>
+                      <span className="text-primary font-semibold hover:underline cursor-pointer">begin the conversation</span>
+                    </BriefingModal>
+                    &nbsp;that will shape the skyline of the future.
+                  </p>
+                </BentoCardContent>
+              </BentoCard>
             </section>
 
           </motion.div>
