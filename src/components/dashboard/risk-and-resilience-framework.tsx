@@ -23,7 +23,7 @@ const frameworkData = [
       metric: 50, 
       metricSuffix: "%+", 
       trend: "high risk", 
-      trendIcon: <ArrowUp className="w-4 h-4 text-destructive" />,
+      trendIcon: <ArrowDown className="w-4 h-4 text-destructive" />,
       citation: 141,
     },
     shield: {
@@ -55,7 +55,7 @@ const frameworkData = [
       metric: 35.7, 
       metricSuffix: "% (Feb 2024)", 
       trend: "high risk", 
-      trendIcon: <ArrowUp className="w-4 h-4 text-destructive" />,
+      trendIcon: <ArrowDown className="w-4 h-4 text-destructive" />,
       citation: 138,
     },
     shield: {
@@ -70,7 +70,7 @@ const frameworkData = [
       name: "Repatriation Risk", 
       metricText: "Improving", 
       trend: "improving", 
-      trendIcon: <ArrowDown className="w-4 h-4 text-green-400" />,
+      trendIcon: <ArrowUp className="w-4 h-4 text-green-400" />,
       citation: 162,
     },
     shield: {
