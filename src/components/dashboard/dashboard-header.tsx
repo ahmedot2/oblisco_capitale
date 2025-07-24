@@ -17,7 +17,8 @@ export function DashboardHeader() {
         </div>
       </motion.div>
       <motion.h1 
-        className="text-6xl md:text-9xl font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-white to-gray-400 bg-[200%_auto] animate-shimmer leading-none"
+        className="text-6xl md:text-9xl font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-[linear-gradient(120deg,rgba(255,255,255,0)_40%,rgba(255,255,255,0.8)_50%,rgba(255,255,255,0)_60%)] bg-[200%_100%] animate-shine"
+        style={{ color: '#b5b5b5a4' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
