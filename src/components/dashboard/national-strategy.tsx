@@ -1,25 +1,25 @@
 // src/components/dashboard/national-strategy.tsx
 import { Map, Globe, Landmark } from 'lucide-react';
-import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from '../ui/bento-card';
+import { BentoCardContent } from '../ui/bento-card';
 
 const propositions = [
   {
     title: "Geopolitical Leverage & Influence",
     text: "Positions Qatar as the primary economic partner in Egypt's Vision 2030. Creates decades of strategic goodwill and deepens bilateral ties at the highest levels of government.",
     icon: <Map className="w-8 h-8 text-primary" />,
-    visual: <div className="absolute inset-0 bg-[url('https://placehold.co/600x400.png')] bg-cover bg-center opacity-10" data-ai-hint="map qatar egypt"></div>
+    visual: <div className="absolute inset-0 bg-[url('https://placehold.co/600x400/000000/000000.png')] bg-cover bg-center opacity-10" data-ai-hint="map qatar egypt"></div>
   },
   {
     title: "Economic Diversification & Soft Power",
     text: "The Oblisco Capitale becomes a tangible symbol of Qatari vision and investment prowess on the African continent, projecting immense soft power and opening new corridors for Qatari businesses.",
     icon: <Globe className="w-8 h-8 text-primary" />,
-    visual: <div className="absolute inset-0 bg-[url('https://placehold.co/600x400.png')] bg-cover bg-center opacity-10" data-ai-hint="global trade"></div>
+    visual: <div className="absolute inset-0 bg-[url('https://placehold.co/600x400/000000/000000.png')] bg-cover bg-center opacity-10" data-ai-hint="global trade"></div>
   },
   {
     title: "A Legacy Asset for Future Generations",
     text: "Secures a non-replicable, trophy asset for QIA's portfolio—a landmark on par with global icons, generating stable, long-term returns and prestige for the State of Qatar for the next century.",
     icon: <Landmark className="w-8 h-8 text-primary" />,
-    visual: <div className="absolute inset-0 bg-[url('https://placehold.co/600x400.png')] bg-cover bg-center opacity-10" data-ai-hint="doha skyline"></div>
+    visual: <div className="absolute inset-0 bg-[url('https://placehold.co/600x400/000000/000000.png')] bg-cover bg-center opacity-10" data-ai-hint="doha skyline"></div>
   }
 ];
 
@@ -28,16 +28,16 @@ export function NationalStrategy() {
     <BentoCardContent>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {propositions.map((prop) => (
-          <div key={prop.title} className="relative overflow-hidden bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col items-center text-center !shadow-none hover:-translate-y-0.5 transition-transform duration-300">
+          <div key={prop.title} className="relative overflow-hidden bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col items-center text-center shadow-inner hover:-translate-y-0.5 transition-transform duration-300">
             {prop.visual}
             <div className="relative z-10 h-full flex flex-col">
-              <div className="flex-shrink-0 mb-2">
+              <div className="flex-shrink-0 mb-4">
                 <div className="p-4 bg-primary/10 rounded-full inline-block">
                   {prop.icon}
                 </div>
               </div>
-              <h3 className="font-headline text-xl mb-2">{prop.title}</h3>
-              <div className="text-center flex-grow">
+              <h3 className="font-headline text-xl mb-3 flex-grow">{prop.title}</h3>
+              <div className="text-center">
                 <p className="text-muted-foreground text-justify">{prop.text}</p>
               </div>
             </div>
