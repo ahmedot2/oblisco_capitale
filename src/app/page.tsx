@@ -20,7 +20,7 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 
 
-export default function Home(props: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default function Home() {
   return (
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
@@ -86,7 +86,7 @@ export default function Home(props: { searchParams: { [key: string]: string | st
             <section aria-labelledby="financial-blueprint-title">
               <h2 id="financial-blueprint-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">IV. The Sovereign Return Proposition</h2>
                <BentoCard>
-                <RoiProjections {...props} />
+                <RoiProjections />
               </BentoCard>
             </section>
 
@@ -107,16 +107,13 @@ export default function Home(props: { searchParams: { [key: string]: string | st
             </section>
 
             <section aria-labelledby="call-to-action-title" className="text-center py-20">
-              <h2 id="call-to-action-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">VIII. The Call to Action</h2>
+              <h2 id="call-to-action-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">VIII. Seizing a Generational Mandate</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                We have prepared a comprehensive due diligence package in the&nbsp;
-                <VaultModal>
-                  <span className="text-primary hover:underline cursor-pointer">Secure Data Vault</span>
-                </VaultModal>
-                &nbsp;and are ready to schedule a confidential executive briefing at your earliest convenience. This is a definitive opportunity for a decisive partner to make history.&nbsp;
+                The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to&nbsp;
                 <BriefingModal>
-                  <span className="text-primary font-semibold hover:underline cursor-pointer">Let us begin the conversation.</span>
+                  <span className="text-primary font-semibold hover:underline cursor-pointer">begin the conversation</span>
                 </BriefingModal>
+                &nbsp;that will shape the skyline of the future.
               </p>
             </section>
 
