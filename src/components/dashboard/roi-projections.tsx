@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React, { useState } from "react"
 import { Crown, Shield, HardHat } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { TextType } from "../ui/text-type"
 
 const scenarioData = {
   conservative: {
@@ -142,14 +143,21 @@ export function RoiProjections() {
           </div>
   
           <div className="lg:col-span-2 flex flex-col justify-center">
-              <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
+              <h3 className="mb-4 font-semibold text-center">The Structure of Control &amp; Benefits</h3>
               <div className="space-y-4">
                   {controlBenefits.map(item => (
                       <BentoCard key={item.title} className={cn("group bg-white/5 border border-white/10 rounded-xl p-4 flex items-start gap-4 shadow-inner transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5")}>
                           <div className="text-primary mt-1 shrink-0">{item.icon}</div>
                           <div>
                               <h4 className="font-semibold text-sm">{item.title}</h4>
-                              <p className="text-xs text-muted-foreground text-justify">{item.text}</p>
+                              <TextType
+                                as="p"
+                                text={item.text}
+                                className="text-xs text-muted-foreground text-justify"
+                                startOnVisible
+                                loop={false}
+                                typingSpeed={10}
+                              />
                           </div>
                       </BentoCard>
                   ))}
