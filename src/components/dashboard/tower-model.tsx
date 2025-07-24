@@ -14,7 +14,7 @@ export function TowerModel() {
           src="/oblisco-tower.png"
           alt="Oblisco Capitale Tower"
           fill
-          className="object-cover rounded-md"
+          className="object-contain rounded-md"
           data-ai-hint="futuristic skyscraper"
         />
       </BentoCardContent>
