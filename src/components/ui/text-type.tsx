@@ -105,14 +105,15 @@ export const TextType = ({
     }
   }, [showCursor, cursorBlinkDuration]);
 
+  const currentText = textArray[currentTextIndex];
+  const processedText = reverseMode
+      ? currentText.split("").reverse().join("")
+      : currentText;
+
   useEffect(() => {
     if (!isVisible) return;
 
     let timeout: NodeJS.Timeout;
-    const currentText = textArray[currentTextIndex];
-    const processedText = reverseMode
-      ? currentText.split("").reverse().join("")
-      : currentText;
 
     const executeTypingAnimation = () => {
       if (isDeleting) {
@@ -182,7 +183,7 @@ export const TextType = ({
     reverseMode,
     variableSpeed,
     onSentenceComplete,
-    processedText.length
+    processedText,
   ]);
 
   const shouldHideCursor =
