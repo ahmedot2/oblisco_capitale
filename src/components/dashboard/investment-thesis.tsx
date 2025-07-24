@@ -4,6 +4,7 @@
 import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "../ui/bento-card";
 import { Building, DollarSign, ShieldCheck, TrendingUp } from "lucide-react";
 import { useCountUp } from "@/hooks/use-count-up";
+import { cn } from "@/lib/utils";
 
 const CountUpMetric = ({
   end,
@@ -58,7 +59,7 @@ export function InvestmentThesis() {
   return (
     <BentoCard className="p-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner">
+        <div className={cn("group bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]")}>
           <BentoCardHeader className="p-0">
             <BentoCardTitle className="font-headline text-xl">
               A Sovereign Mandate to Secure an Icon
@@ -71,7 +72,7 @@ export function InvestmentThesis() {
           </BentoCardContent>
         </div>
 
-        <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner">
+        <div className={cn("group bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]")}>
           <BentoCardHeader className="p-0">
             <BentoCardTitle className="font-headline text-xl">
               The Opportunity by the Numbers
@@ -94,7 +95,7 @@ export function InvestmentThesis() {
           </BentoCardContent>
         </div>
         
-        <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner">
+        <div className={cn("group bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]")}>
           <BentoCardHeader className="p-0">
             <BentoCardTitle className="font-headline text-xl">
               The Exclusive Investment Vehicle

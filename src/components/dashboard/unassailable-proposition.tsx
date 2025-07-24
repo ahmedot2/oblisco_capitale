@@ -25,7 +25,7 @@ export function UnassailableProposition() {
       <BentoCardContent className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {propositions.map((prop) => (
-            <BentoCard key={prop.title} className="bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
+            <BentoCard key={prop.title} className="bg-white/5 border-white/10 !shadow-none transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5">
               <BentoCardHeader className="items-center text-center">
                 <div className="p-4 bg-primary/10 rounded-full mb-2">
                   {prop.icon}

@@ -144,7 +144,7 @@ export function RoiProjections() {
               <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
               <div className="space-y-4">
                   {controlBenefits.map(item => (
-                      <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
+                      <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5 transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]">
                           <div className="text-primary mt-1 shrink-0">{item.icon}</div>
                           <div>
                               <h4 className="font-semibold text-sm">{item.title}</h4>
