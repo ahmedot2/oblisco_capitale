@@ -94,7 +94,7 @@ export default function Home() {
 
             <section aria-labelledby="national-strategy-title">
               <h2 id="national-strategy-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">V. A Pillar of National Strategy</h2>
-              <BentoCard>
+              <BentoCard className="p-6">
                  <NationalStrategy />
               </BentoCard>
             </section>
@@ -102,7 +102,9 @@ export default function Home() {
             <section aria-labelledby="strategic-inquiries-title">
               <h2 id="strategic-inquiries-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VI. Strategic Inquiries</h2>
               <p className="text-lg text-muted-foreground mb-6">Anticipating the core questions of a decisive partner.</p>
-              <StrategicInquiries />
+              <BentoCard>
+                <StrategicInquiries />
+              </BentoCard>
             </section>
             
             <section aria-labelledby="unassailable-proposition-title">
