@@ -71,9 +71,10 @@ export default function Home() {
             </section>
             
             <section aria-labelledby="risk-resilience-framework-title">
-              <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">II. The Risk & Resilience Framework</h2>
-              <p className="text-lg text-muted-foreground mb-6">A proactive methodology for transforming systemic risk into strategic advantage.</p>
-              <RiskAndResilienceFramework />
+              <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Risk & Resilience Framework</h2>
+              <BentoCard>
+                <RiskAndResilienceFramework />
+              </BentoCard>
             </section>
 
             <section aria-labelledby="de-risked-execution-roadmap-title">
