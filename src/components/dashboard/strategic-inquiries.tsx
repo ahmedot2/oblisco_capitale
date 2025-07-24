@@ -38,11 +38,11 @@ export function StrategicInquiries() {
         <Accordion type="multiple" className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {inquiries.map((item, index) => (
             <AccordionItem value={`item-${index}`} key={index} asChild>
-              <BentoCard className="p-4 bg-white/5 border-white/10 !shadow-none !hover:-translate-y-0.5 transition-all duration-300">
+              <BentoCard className="p-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5 transition-all duration-300 hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]">
                 <AccordionTrigger className="text-left font-bold text-base hover:no-underline [&[data-state=open]>svg]:text-primary">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="pt-4 text-muted-foreground">
+                <AccordionContent className="pt-4 text-muted-foreground text-justify">
                   {item.answer}
                 </AccordionContent>
               </BentoCard>
