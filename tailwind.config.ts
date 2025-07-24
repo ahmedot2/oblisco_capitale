@@ -89,18 +89,18 @@ export default {
           },
         },
         'shimmer': {
-          '0%, 100%': {
-            'background-position': '200% center',
-          },
-          '50%': {
+          '0%': {
             'background-position': '-200% center',
+          },
+          '100%': {
+            'background-position': '200% center',
           },
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'shimmer': 'shimmer 5s ease-in-out infinite',
+        'shimmer': 'shimmer 3s linear infinite',
       },
     },
   },
