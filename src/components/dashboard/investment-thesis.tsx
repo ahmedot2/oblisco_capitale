@@ -5,6 +5,7 @@ import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "..
 import { Building, DollarSign, ShieldCheck, TrendingUp } from "lucide-react";
 import { useCountUp } from "@/hooks/use-count-up";
 import { cn } from "@/lib/utils";
+import { TextType } from "../ui/text-type";
 
 const CountUpMetric = ({
   end,
@@ -66,9 +67,14 @@ export function InvestmentThesis() {
             </BentoCardTitle>
           </BentoCardHeader>
           <BentoCardContent className="p-0 pt-4 flex-grow">
-            <p className="text-muted-foreground text-justify">
-              A generational mandate for QIA to exclusively fund the $3B Oblisco Capitale CBD, securing sovereign control over what will be the world's tallest building. This is a direct pathway to cementing Qatar's legacy on the global stage, creating an unparalleled symbol of Qatari vision and economic power for the next century.
-            </p>
+            <TextType 
+              as="p"
+              text="A generational mandate for QIA to exclusively fund the $3B Oblisco Capitale CBD, securing sovereign control over what will be the world's tallest building. This is a direct pathway to cementing Qatar's legacy on the global stage, creating an unparalleled symbol of Qatari vision and economic power for the next century."
+              className="text-muted-foreground text-justify"
+              startOnVisible
+              loop={false}
+              typingSpeed={10}
+            />
           </BentoCardContent>
         </div>
 
@@ -104,11 +110,25 @@ export function InvestmentThesis() {
           <BentoCardContent className="p-0 pt-4 space-y-4 flex-grow">
             <div>
               <h4 className="font-semibold text-primary">The Ask:</h4>
-              <p className="text-muted-foreground text-justify">$3 Billion Sole Funding Mandate.</p>
+               <TextType 
+                as="p"
+                text="$3 Billion Sole Funding Mandate."
+                className="text-muted-foreground text-justify"
+                startOnVisible
+                loop={false}
+                typingSpeed={10}
+              />
             </div>
             <div>
               <h4 className="font-semibold text-primary">The Vehicle:</h4>
-              <p className="text-muted-foreground text-justify">The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards.</p>
+              <TextType 
+                as="p"
+                text="The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards."
+                className="text-muted-foreground text-justify"
+                startOnVisible
+                loop={false}
+                typingSpeed={10}
+              />
             </div>
           </BentoCardContent>
         </div>
