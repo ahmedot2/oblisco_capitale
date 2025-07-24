@@ -87,18 +87,18 @@ export function RiskAndResilienceFramework() {
   const handleInteraction = (id: string) => {
     setSelectedRisk(prev => (prev === id ? null : id));
   };
-  
+
   const getInteractionHandlers = (id: string) => {
     if (isMobile) {
       return {
         onClick: () => handleInteraction(id)
-      }
+      };
     }
     return {
       onMouseEnter: () => setSelectedRisk(id),
       onMouseLeave: () => setSelectedRisk(null),
-    }
-  }
+    };
+  };
 
   const selectedShield = frameworkData.find(d => d.id === selectedRisk)?.shield;
 
@@ -106,7 +106,7 @@ export function RiskAndResilienceFramework() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className='flex flex-col gap-4'>
         <TooltipProvider>
-          {frameworkData.map(({ id, risk }) => {
+          {frameworkData.map(({ id, risk, shield }) => {
             const isSelected = selectedRisk === id;
             return (
               <div 
@@ -117,7 +117,7 @@ export function RiskAndResilienceFramework() {
                 <div
                   className={cn(
                     "bg-white/5 p-4 rounded-lg border border-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full",
-                    isSelected && "border-primary ring-2 ring-primary"
+                    isSelected && !isMobile && "border-primary ring-2 ring-primary"
                   )}
                 >
                   <div className="flex justify-between items-center">
@@ -142,14 +142,34 @@ export function RiskAndResilienceFramework() {
                       </Tooltip>
                     </div>
                   </div>
+                  <AnimatePresence>
+                    {isMobile && isSelected && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex items-start gap-3 pt-4 border-t border-white/10">
+                          <ShieldCheck className="w-6 h-6 text-primary shrink-0 mt-1" />
+                          <div>
+                            <h4 className="font-bold text-sm text-primary">{shield.headline}</h4>
+                            <p className="text-sm text-foreground">{shield.text}</p>
+                            <p className="text-xs text-muted-foreground mt-2">{shield.attribution}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
-            )
+            );
           })}
         </TooltipProvider>
       </div>
 
-      <div className="relative">
+      <div className="relative hidden md:block">
         <AnimatePresence>
           {selectedShield && (
             <motion.div
@@ -157,7 +177,7 @@ export function RiskAndResilienceFramework() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="bg-secondary/50 p-4 rounded-lg border border-primary/30 h-full w-full absolute top-0 left-0"
+              className="bg-secondary/50 p-4 rounded-lg border border-primary/30 h-full w-full sticky top-24"
             >
               <div className="flex items-center gap-3 mb-2">
                 <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
