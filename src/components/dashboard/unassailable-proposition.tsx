@@ -33,7 +33,7 @@ export function UnassailableProposition() {
                 <BentoCardTitle className="font-headline text-xl">{prop.title}</BentoCardTitle>
               </BentoCardHeader>
               <BentoCardContent className="text-center">
-                <p className="text-muted-foreground">{prop.text}</p>
+                <p className="text-muted-foreground text-justify">{prop.text}</p>
               </BentoCardContent>
             </BentoCard>
           ))}
