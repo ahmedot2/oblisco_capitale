@@ -2,7 +2,7 @@
 'use client';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { BentoCard } from "../ui/bento-card";
+import { BentoCard, BentoCardContent } from "../ui/bento-card";
 
 const inquiries = [
   {
@@ -33,19 +33,23 @@ const inquiries = [
 
 export function StrategicInquiries() {
   return (
-    <Accordion type="multiple" className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {inquiries.map((item, index) => (
-        <AccordionItem value={`item-${index}`} key={index} asChild>
-          <BentoCard className="p-4 !hover:-translate-y-0 transition-all duration-300">
-            <AccordionTrigger className="text-left font-bold text-base hover:no-underline [&[data-state=open]>svg]:text-primary">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="pt-4 text-muted-foreground">
-              {item.answer}
-            </AccordionContent>
-          </BentoCard>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <BentoCard>
+      <BentoCardContent className="p-6">
+        <Accordion type="multiple" className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {inquiries.map((item, index) => (
+            <AccordionItem value={`item-${index}`} key={index} asChild>
+              <BentoCard className="p-4 bg-white/5 border-white/10 !shadow-none !hover:-translate-y-0.5 transition-all duration-300">
+                <AccordionTrigger className="text-left font-bold text-base hover:no-underline [&[data-state=open]>svg]:text-primary">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="pt-4 text-muted-foreground">
+                  {item.answer}
+                </AccordionContent>
+              </BentoCard>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </BentoCardContent>
+    </BentoCard>
   );
 }
