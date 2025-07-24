@@ -19,6 +19,7 @@ import { NationalStrategy } from "@/components/dashboard/national-strategy";
 import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import { DecryptedText } from "@/components/ui/decrypted-text";
 
 
 export default function Home() {
@@ -115,11 +116,11 @@ export default function Home() {
                     <UnassailableProposition />
                     <Separator className="my-8 bg-white/10" />
                      <p className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
-                        The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to&nbsp;
-                        <BriefingModal>
-                          <span className="text-primary font-semibold hover:underline cursor-pointer">begin the conversation</span>
-                        </BriefingModal>
-                        &nbsp;that will shape the skyline of the future.
+                        <DecryptedText 
+                          animateOn="view"
+                          text="The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to begin the conversation that will shape the skyline of the future."
+                          speed={20}
+                        />
                       </p>
                 </BentoCard>
             </section>
