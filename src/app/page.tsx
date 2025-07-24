@@ -116,11 +116,9 @@ export default function Home() {
                     <UnassailableProposition />
                     <Separator className="my-8 bg-white/10" />
                      <p className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
-                        <DecryptedText 
-                          animateOn="view"
-                          text="The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to begin the conversation that will shape the skyline of the future."
-                          speed={20}
-                        />
+                        The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to <BriefingModal>
+                          <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
+                        </BriefingModal> that will shape the skyline of the future.
                       </p>
                 </BentoCard>
             </section>
