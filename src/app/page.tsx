@@ -57,7 +57,7 @@ export default function Home() {
                   <BentoCardTitle className="font-headline text-2xl">A Generational Asset Secured by an Unrivaled Partnership</BentoCardTitle>
                 </BentoCardHeader>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-                  <div className="lg:col-span-1 h-full flex flex-col">
+                  <div className="lg:col-span-1 h-full flex flex-col min-h-[300px] lg:min-h-0">
                     <TowerModel />
                   </div>
                   <div className="lg:col-span-1 h-full flex flex-col">
