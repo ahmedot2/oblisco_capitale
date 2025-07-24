@@ -68,7 +68,7 @@ const processWaterfallData = (data: any[]) => {
   return processed.map(item => item.isTotal ? { ...item, range: [0, finalTotal], value: finalTotal } : item);
 };
 
-const WaterfallTooltip = ({ active, payload, label }: any) => {
+const WaterfallTooltip = ({ active, payload, label }: { active?: boolean; payload?: any[]; label?: string; }) => {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     const value = item.isStart ? `-$${Math.abs(item.value).toFixed(1)}B` : item.isTotal ? `$${item.value.toFixed(1)}B` : item.value > 0 ? `+$${item.value.toFixed(1)}B` : `-$${Math.abs(item.value).toFixed(1)}B`;
