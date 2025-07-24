@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import { BentoCardContent, BentoCardHeader, BentoCardTitle } from '../ui/bento-card';
+import { cn } from '@/lib/utils';
 
 export function TowerModel() {
   return (
-    <div className="w-full h-full flex flex-col bg-white/5 p-4 rounded-lg border border-white/10">
+    <div className={cn("group w-full h-full flex flex-col bg-white/5 p-4 rounded-lg border border-white/10 transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5")}>
       <BentoCardHeader className="p-0">
         <BentoCardTitle className="font-headline text-base">The Iconic Centerpiece</BentoCardTitle>
       </BentoCardHeader>

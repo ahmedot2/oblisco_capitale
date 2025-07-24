@@ -33,12 +33,11 @@ const inquiries = [
 
 export function StrategicInquiries() {
   return (
-    <BentoCard>
       <BentoCardContent className="p-6">
         <Accordion type="multiple" className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {inquiries.map((item, index) => (
             <AccordionItem value={`item-${index}`} key={index} asChild>
-              <BentoCard className="p-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5 transition-all duration-300 hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]">
+              <BentoCard className="p-4 bg-white/5 border-white/10 !shadow-none transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5">
                 <AccordionTrigger className="text-left font-bold text-base hover:no-underline [&[data-state=open]>svg]:text-primary">
                   {item.question}
                 </AccordionTrigger>
@@ -50,6 +49,5 @@ export function StrategicInquiries() {
           ))}
         </Accordion>
       </BentoCardContent>
-    </BentoCard>
   );
 }

@@ -48,7 +48,9 @@ export default function Home() {
 
             <section aria-labelledby="investment-thesis-title">
               <h2 id="investment-thesis-title" className="text-center text-lg font-semibold text-muted-foreground mb-6">The Investment Thesis</h2>
-              <InvestmentThesis />
+              <BentoCard className="p-6">
+                <InvestmentThesis />
+              </BentoCard>
             </section>
 
             <section aria-labelledby="strategic-imperative-title">
