@@ -36,8 +36,18 @@ export function DashboardHeader() {
         <DecryptedText 
           text="An exclusive briefing on a landmark investment opportunity in the New Administrative Capital of Egypt." 
           animateOn="view"
-          speed={50}
+          speed={10}
+          characters="abcdefghijklmnopqrstuvwxyz"
         />
+      </motion.div>
+      <motion.div
+        className="mt-6 text-primary font-medium"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 2.2 }}
+      >
+        <p>Presented by:</p>
+        <p>His Excellency Sheikh Jabr bin Thani Al Thani</p>
       </motion.div>
     </header>
   );
