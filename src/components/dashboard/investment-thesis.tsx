@@ -64,7 +64,7 @@ export function InvestmentThesis() {
           </BentoCardTitle>
         </BentoCardHeader>
         <BentoCardContent>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-justify">
             A generational mandate for QIA to exclusively fund the $3B Oblisco Capitale CBD, securing sovereign control over what will be the world's tallest building. This is a direct pathway to cementing Qatar's legacy on the global stage, creating an unparalleled symbol of Qatari vision and economic power for the next century.
           </p>
         </BentoCardContent>
