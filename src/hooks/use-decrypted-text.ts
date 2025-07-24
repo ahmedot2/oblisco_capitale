@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const defaultCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?-.';
+const defaultCharacters = 'abcdefghijklmnopqrstuvwxyz';
 
 type UseDecryptedTextOptions = {
   text: string;

@@ -36,7 +36,7 @@ export function DashboardHeader() {
         <DecryptedText 
           text="An exclusive briefing on a landmark investment opportunity in the New Administrative Capital of Egypt." 
           animateOn="view"
-          speed={20}
+          speed={50}
         />
       </motion.div>
     </header>
