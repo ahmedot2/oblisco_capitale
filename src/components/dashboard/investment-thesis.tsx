@@ -102,11 +102,11 @@ export function InvestmentThesis() {
         <BentoCardContent className="space-y-4">
           <div>
             <h4 className="font-semibold text-primary">The Ask:</h4>
-            <p className="text-muted-foreground">$3 Billion Sole Funding Mandate.</p>
+            <p className="text-muted-foreground text-justify">$3 Billion Sole Funding Mandate.</p>
           </div>
           <div>
             <h4 className="font-semibold text-primary">The Vehicle:</h4>
-            <p className="text-muted-foreground">The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards.</p>
+            <p className="text-muted-foreground text-justify">The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards.</p>
           </div>
         </BentoCardContent>
       </BentoCard>
