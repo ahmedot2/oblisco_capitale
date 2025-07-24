@@ -17,9 +17,9 @@ export function DashboardHeader() {
         </div>
       </motion.div>
       <motion.h1 
-        className="text-6xl md:text-9xl font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 leading-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="text-6xl md:text-9xl font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-white to-gray-400 bg-[200%_auto] animate-shimmer leading-none"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
       >
         Oblisco Capitale
