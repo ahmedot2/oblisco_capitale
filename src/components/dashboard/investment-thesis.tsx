@@ -1,11 +1,57 @@
+// src/components/dashboard/investment-thesis.tsx
+'use client';
+
 import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "../ui/bento-card";
 import { Building, DollarSign, ShieldCheck, TrendingUp } from "lucide-react";
+import { useCountUp } from "@/hooks/use-count-up";
+
+const CountUpMetric = ({
+  end,
+  prefix = '',
+  suffix = '',
+  decimals = 0
+}: {
+  end: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}) => {
+  const { count, ref } = useCountUp(end, 2000, decimals);
+  return (
+    <span ref={ref} className="text-2xl font-bold">
+      {prefix}{count}{suffix}
+    </span>
+  );
+};
 
 const metrics = [
-  { value: "$3B", label: "Sole Capital Mandate", icon: <DollarSign className="w-6 h-6 text-primary" /> },
-  { value: "1,000m", label: "Iconic Height", icon: <Building className="w-6 h-6 text-primary" /> },
-  { value: ">18%", label: "Target Project IRR (USD)", icon: <TrendingUp className="w-6 h-6 text-primary" /> },
-  { value: "~40%", label: "Commanding Equity Stake", icon: <ShieldCheck className="w-6 h-6 text-primary" /> },
+  { 
+    end: 3, 
+    prefix: "$",
+    suffix: "B",
+    label: "Sole Capital Mandate", 
+    icon: <DollarSign className="w-6 h-6 text-primary" /> 
+  },
+  { 
+    end: 1000, 
+    suffix: "m",
+    label: "Iconic Height", 
+    icon: <Building className="w-6 h-6 text-primary" /> 
+  },
+  { 
+    end: 18, 
+    prefix: ">",
+    suffix: "%",
+    label: "Target Project IRR (USD)", 
+    icon: <TrendingUp className="w-6 h-6 text-primary" /> 
+  },
+  { 
+    end: 40,
+    prefix: "~",
+    suffix: "%",
+    label: "Commanding Equity Stake", 
+    icon: <ShieldCheck className="w-6 h-6 text-primary" /> 
+  },
 ];
 
 export function InvestmentThesis() {
@@ -36,9 +82,10 @@ export function InvestmentThesis() {
               <div key={metric.label} className="flex items-start gap-3">
                 <div className="mt-1">{metric.icon}</div>
                 <div>
-                  <p className="text-2xl font-bold">{metric.value}</p>
+                  <p className="text-2xl font-bold">
+                     <CountUpMetric end={metric.end} prefix={metric.prefix} suffix={metric.suffix} />
+                  </p>
                   <p className="text-xs text-muted-foreground leading-tight">{metric.label}</p>
-                  {metric.sublabel && <p className="text-xs text-muted-foreground/70 leading-tight">{metric.sublabel}</p>}
                 </div>
               </div>
             ))}
