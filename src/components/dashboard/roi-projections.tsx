@@ -6,6 +6,7 @@ import { BentoCard, BentoCardContent, BentoCardDescription, BentoCardHeader, Ben
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React, { useState } from "react"
 import { Crown, Shield, HardHat } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const scenarioData = {
   conservative: {
@@ -86,7 +87,7 @@ const controlBenefits = [
     {
       title: "Commanding Equity & Control",
       icon: <Crown className="w-8 h-8 text-primary" />,
-      text: "A ~40% equity stake in the entire CBD, including the Oblisco Tower. Provides QIA with board representation and key decision-making rights on the project's future."
+      text: "As a direct result of the $3B sole funding mandate, QIA will secure a ~40% equity stake in the entire Central Business District (CBD) development. This grants ownership not just in the Oblisco Tower, but in the full portfolio of surrounding commercial, residential, and retail assets, providing QIA with board representation and key control over the project's future."
     },
     {
       title: "Priority Profit Repatriation",
@@ -144,11 +145,11 @@ export function RoiProjections() {
               <h3 className="mb-4 font-semibold text-center">The Structure of Control & Benefits</h3>
               <div className="space-y-4">
                   {controlBenefits.map(item => (
-                      <BentoCard key={item.title} className="p-4 flex items-start gap-4 bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5 transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)]">
+                      <BentoCard key={item.title} className={cn("group bg-white/5 border border-white/10 rounded-xl p-4 flex items-start gap-4 shadow-inner transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_0px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5")}>
                           <div className="text-primary mt-1 shrink-0">{item.icon}</div>
                           <div>
                               <h4 className="font-semibold text-sm">{item.title}</h4>
-                              <p className="text-xs text-muted-foreground">{item.text}</p>
+                              <p className="text-xs text-muted-foreground text-justify">{item.text}</p>
                           </div>
                       </BentoCard>
                   ))}
