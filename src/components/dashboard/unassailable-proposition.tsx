@@ -21,20 +21,24 @@ const propositions = [
 
 export function UnassailableProposition() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {propositions.map((prop) => (
-        <BentoCard key={prop.title}>
-          <BentoCardHeader className="items-center text-center">
-            <div className="p-4 bg-primary/10 rounded-full mb-2">
-              {prop.icon}
-            </div>
-            <BentoCardTitle className="font-headline text-xl">{prop.title}</BentoCardTitle>
-          </BentoCardHeader>
-          <BentoCardContent className="text-center">
-            <p className="text-muted-foreground">{prop.text}</p>
-          </BentoCardContent>
-        </BentoCard>
-      ))}
-    </div>
+    <BentoCard>
+      <BentoCardContent className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {propositions.map((prop) => (
+            <BentoCard key={prop.title} className="bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
+              <BentoCardHeader className="items-center text-center">
+                <div className="p-4 bg-primary/10 rounded-full mb-2">
+                  {prop.icon}
+                </div>
+                <BentoCardTitle className="font-headline text-xl">{prop.title}</BentoCardTitle>
+              </BentoCardHeader>
+              <BentoCardContent className="text-center">
+                <p className="text-muted-foreground">{prop.text}</p>
+              </BentoCardContent>
+            </BentoCard>
+          ))}
+        </div>
+      </BentoCardContent>
+    </BentoCard>
   );
 }
