@@ -20,6 +20,7 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { DecryptedText } from "@/components/ui/decrypted-text";
+import { TextType } from "@/components/ui/text-type";
 
 
 export default function Home() {
@@ -115,11 +116,26 @@ export default function Home() {
                 <BentoCard className="p-6 text-center">
                     <UnassailableProposition />
                     <Separator className="my-8 bg-white/10" />
-                     <p className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
-                        The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to <BriefingModal>
+                    <div className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
+                        <TextType 
+                          text="The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to "
+                          as="span"
+                          startOnVisible
+                          loop={false}
+                          typingSpeed={10}
+                        />
+                        <BriefingModal>
                           <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
-                        </BriefingModal> that will shape the skyline of the future.
-                      </p>
+                        </BriefingModal>
+                        <TextType 
+                          text=" that will shape the skyline of the future."
+                          as="span"
+                          startOnVisible
+                          loop={false}
+                          typingSpeed={10}
+                          initialDelay={4000}
+                        />
+                      </div>
                 </BentoCard>
             </section>
 

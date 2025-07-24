@@ -104,7 +104,7 @@ export const TextType = ({
       });
     }
   }, [showCursor, cursorBlinkDuration]);
-
+  
   const currentText = textArray[currentTextIndex];
   const processedText = reverseMode
       ? currentText.split("").reverse().join("")
@@ -149,13 +149,14 @@ export const TextType = ({
             },
             variableSpeed ? getRandomSpeed() : typingSpeed
           );
-        } else if (loop && textArray.length > 1) {
-          timeout = setTimeout(() => {
-            setIsDeleting(true);
-          }, pauseDuration);
-        } else if (!loop) {
-          if (onSentenceComplete) {
+        } else {
+           if (onSentenceComplete) {
             onSentenceComplete(textArray[currentTextIndex], currentTextIndex);
+          }
+          if (textArray.length > 1 && loop) {
+            timeout = setTimeout(() => {
+              setIsDeleting(true);
+            }, pauseDuration);
           }
         }
       }
@@ -183,7 +184,8 @@ export const TextType = ({
     reverseMode,
     variableSpeed,
     onSentenceComplete,
-    processedText,
+    processedText.length,
+    processedText
   ]);
 
   const shouldHideCursor =
@@ -211,12 +213,14 @@ export const TextType = ({
       </span>
     ),
   ];
+  
+  const finalClassName = `${className} ${Component === 'span' ? 'inline' : ''}`;
 
   return createElement(
     Component,
     {
       ref: containerRef,
-      className: `text-type ${className}`,
+      className: `text-type ${finalClassName}`,
       ...props,
     },
     ...content
