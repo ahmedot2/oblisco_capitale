@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function DashboardHeader() {
   return (
-    <header className="text-center">
+    <header className="text-center py-32">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -17,7 +17,7 @@ export function DashboardHeader() {
         </div>
       </motion.div>
       <motion.h1 
-        className="text-8xl md:text-[10rem] font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 leading-none"
+        className="text-8xl md:text-[10rem] font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 leading-none whitespace-nowrap"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
