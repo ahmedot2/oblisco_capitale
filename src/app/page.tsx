@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { DecryptedText } from "@/components/ui/decrypted-text";
 import { TextType } from "@/components/ui/text-type";
+import { PlayCircle } from "lucide-react";
 
 
 export default function Home() {
@@ -54,6 +55,27 @@ export default function Home() {
                 <InvestmentThesis />
               </BentoCard>
             </section>
+            
+            <section aria-labelledby="video-1-title">
+                <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
+                <BentoCard>
+                    <BentoCardContent className="p-6">
+                        <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                            <video
+                                controls
+                                poster="https://placehold.co/1920x1080.png"
+                                className="w-full h-full object-cover"
+                                data-ai-hint="video presentation"
+                            >
+                                {/* Add a <source> tag here with your video file */}
+                            </video>
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
+                                <PlayCircle className="w-16 h-16 text-white/50" />
+                            </div>
+                        </div>
+                    </BentoCardContent>
+                </BentoCard>
+            </section>
 
             <section aria-labelledby="strategic-imperative-title">
               <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
@@ -75,6 +97,27 @@ export default function Home() {
               </BentoCard>
             </section>
             
+            <section aria-labelledby="video-2-title">
+                <h2 id="video-2-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Deeper Dive into the Vision</h2>
+                <BentoCard>
+                    <BentoCardContent className="p-6">
+                        <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                            <video
+                                controls
+                                poster="https://placehold.co/1920x1080.png"
+                                className="w-full h-full object-cover"
+                                data-ai-hint="architectural visualization"
+                            >
+                                {/* Add a <source> tag here with your video file */}
+                            </video>
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
+                                <PlayCircle className="w-16 h-16 text-white/50" />
+                            </div>
+                        </div>
+                    </BentoCardContent>
+                </BentoCard>
+            </section>
+
             <section aria-labelledby="risk-resilience-framework-title">
               <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Risk & Resilience Framework</h2>
               <BentoCard>
