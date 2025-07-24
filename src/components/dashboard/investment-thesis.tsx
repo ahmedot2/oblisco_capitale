@@ -56,60 +56,62 @@ const metrics = [
 
 export function InvestmentThesis() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <BentoCard className="lg:col-span-1">
-        <BentoCardHeader>
-          <BentoCardTitle className="font-headline text-xl">
-            A Sovereign Mandate to Secure an Icon
-          </BentoCardTitle>
-        </BentoCardHeader>
-        <BentoCardContent>
-          <p className="text-muted-foreground text-justify">
-            A generational mandate for QIA to exclusively fund the $3B Oblisco Capitale CBD, securing sovereign control over what will be the world's tallest building. This is a direct pathway to cementing Qatar's legacy on the global stage, creating an unparalleled symbol of Qatari vision and economic power for the next century.
-          </p>
-        </BentoCardContent>
-      </BentoCard>
+    <BentoCard className="p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner">
+          <BentoCardHeader className="p-0">
+            <BentoCardTitle className="font-headline text-xl">
+              A Sovereign Mandate to Secure an Icon
+            </BentoCardTitle>
+          </BentoCardHeader>
+          <BentoCardContent className="p-0 pt-4 flex-grow">
+            <p className="text-muted-foreground text-justify">
+              A generational mandate for QIA to exclusively fund the $3B Oblisco Capitale CBD, securing sovereign control over what will be the world's tallest building. This is a direct pathway to cementing Qatar's legacy on the global stage, creating an unparalleled symbol of Qatari vision and economic power for the next century.
+            </p>
+          </BentoCardContent>
+        </div>
 
-      <BentoCard className="lg:col-span-1">
-        <BentoCardHeader>
-          <BentoCardTitle className="font-headline text-xl">
-            The Opportunity by the Numbers
-          </BentoCardTitle>
-        </BentoCardHeader>
-        <BentoCardContent>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-6">
-            {metrics.map(metric => (
-              <div key={metric.label} className="flex items-start gap-3">
-                <div className="mt-1">{metric.icon}</div>
-                <div>
-                  <p className="text-2xl font-bold">
-                     <CountUpMetric end={metric.end} prefix={metric.prefix} suffix={metric.suffix} />
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-tight">{metric.label}</p>
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner">
+          <BentoCardHeader className="p-0">
+            <BentoCardTitle className="font-headline text-xl">
+              The Opportunity by the Numbers
+            </BentoCardTitle>
+          </BentoCardHeader>
+          <BentoCardContent className="p-0 pt-4 flex-grow flex flex-col justify-center">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-6">
+              {metrics.map(metric => (
+                <div key={metric.label} className="flex items-start gap-3">
+                  <div className="mt-1">{metric.icon}</div>
+                  <div>
+                    <p className="text-2xl font-bold">
+                       <CountUpMetric end={metric.end} prefix={metric.prefix} suffix={metric.suffix} />
+                    </p>
+                    <p className="text-xs text-muted-foreground leading-tight">{metric.label}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </BentoCardContent>
-      </BentoCard>
-      
-      <BentoCard className="lg:col-span-1">
-        <BentoCardHeader>
-          <BentoCardTitle className="font-headline text-xl">
-            The Exclusive Investment Vehicle
-          </BentoCardTitle>
-        </BentoCardHeader>
-        <BentoCardContent className="space-y-4">
-          <div>
-            <h4 className="font-semibold text-primary">The Ask:</h4>
-            <p className="text-muted-foreground text-justify">$3 Billion Sole Funding Mandate.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-primary">The Vehicle:</h4>
-            <p className="text-muted-foreground text-justify">The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards.</p>
-          </div>
-        </BentoCardContent>
-      </BentoCard>
-    </div>
+              ))}
+            </div>
+          </BentoCardContent>
+        </div>
+        
+        <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col shadow-inner">
+          <BentoCardHeader className="p-0">
+            <BentoCardTitle className="font-headline text-xl">
+              The Exclusive Investment Vehicle
+            </BentoCardTitle>
+          </BentoCardHeader>
+          <BentoCardContent className="p-0 pt-4 space-y-4 flex-grow">
+            <div>
+              <h4 className="font-semibold text-primary">The Ask:</h4>
+              <p className="text-muted-foreground text-justify">$3 Billion Sole Funding Mandate.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-primary">The Vehicle:</h4>
+              <p className="text-muted-foreground text-justify">The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards.</p>
+            </div>
+          </BentoCardContent>
+        </div>
+      </div>
+    </BentoCard>
   );
 }
