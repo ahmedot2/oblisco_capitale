@@ -1,7 +1,9 @@
+// src/components/dashboard/dashboard-header.tsx
 'use client';
 
 import { Pyramid } from "lucide-react";
 import { motion } from "framer-motion";
+import { DecryptedText } from "../ui/decrypted-text";
 
 export function DashboardHeader() {
   return (
@@ -25,14 +27,18 @@ export function DashboardHeader() {
       >
         Oblisco Capitale
       </motion.h1>
-      <motion.p 
+      <motion.div 
         className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 1.8 }}
       >
-        An exclusive briefing on a landmark investment opportunity in the New Administrative Capital of Egypt.
-      </motion.p>
+        <DecryptedText 
+          text="An exclusive briefing on a landmark investment opportunity in the New Administrative Capital of Egypt." 
+          animateOn="view"
+          speed={20}
+        />
+      </motion.div>
     </header>
   );
 }
