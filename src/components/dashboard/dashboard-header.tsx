@@ -17,7 +17,7 @@ export function DashboardHeader() {
         </div>
       </motion.div>
       <motion.h1 
-        className="text-[10vw] lg:text-[10rem] font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 leading-none whitespace-nowrap"
+        className="text-[clamp(2rem,12vw,10rem)] font-extrabold font-headline tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 leading-none whitespace-nowrap"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
