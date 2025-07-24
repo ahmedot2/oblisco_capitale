@@ -25,23 +25,25 @@ const propositions = [
 
 export function NationalStrategy() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {propositions.map((prop) => (
-        <BentoCard key={prop.title} className="relative overflow-hidden">
-          {prop.visual}
-          <div className="relative z-10 h-full flex flex-col">
-            <BentoCardHeader className="items-center text-center">
-              <div className="p-4 bg-primary/10 rounded-full mb-2">
-                {prop.icon}
-              </div>
-              <BentoCardTitle className="font-headline text-xl">{prop.title}</BentoCardTitle>
-            </BentoCardHeader>
-            <BentoCardContent className="text-center flex-grow">
-              <p className="text-muted-foreground">{prop.text}</p>
-            </BentoCardContent>
-          </div>
-        </BentoCard>
-      ))}
-    </div>
+    <BentoCardContent>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {propositions.map((prop) => (
+          <BentoCard key={prop.title} className="relative overflow-hidden bg-white/5 border-white/10 !shadow-none hover:-translate-y-0.5">
+            {prop.visual}
+            <div className="relative z-10 h-full flex flex-col">
+              <BentoCardHeader className="items-center text-center">
+                <div className="p-4 bg-primary/10 rounded-full mb-2">
+                  {prop.icon}
+                </div>
+                <BentoCardTitle className="font-headline text-xl">{prop.title}</BentoCardTitle>
+              </BentoCardHeader>
+              <BentoCardContent className="text-center flex-grow">
+                <p className="text-muted-foreground text-justify">{prop.text}</p>
+              </BentoCardContent>
+            </div>
+          </BentoCard>
+        ))}
+      </div>
+    </BentoCardContent>
   );
 }

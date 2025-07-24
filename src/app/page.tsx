@@ -94,7 +94,9 @@ export default function Home() {
 
             <section aria-labelledby="national-strategy-title">
               <h2 id="national-strategy-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">V. A Pillar of National Strategy</h2>
-              <NationalStrategy />
+              <BentoCard>
+                 <NationalStrategy />
+              </BentoCard>
             </section>
 
             <section aria-labelledby="strategic-inquiries-title">
