@@ -19,7 +19,7 @@ export function InvestmentThesis() {
         </BentoCardHeader>
         <BentoCardContent>
           <p className="text-muted-foreground">
-            This proposal outlines a generational opportunity for QIA to fully fund the $3B Oblisco Capitale and its surrounding CBD, securing complete financial control over a landmark national asset. This is a direct pathway to establishing a new pillar of Qatari economic influence in North Africa.
+            A generational mandate for QIA to exclusively fund the $3B Oblisco Capitale CBD, securing sovereign control over a landmark national asset. This is a direct pathway to establishing a new pillar of Qatari economic influence in North Africa.
           </p>
         </BentoCardContent>
       </BentoCard>
@@ -59,7 +59,7 @@ export function InvestmentThesis() {
           </div>
           <div>
             <h4 className="font-semibold text-primary">The Vehicle:</h4>
-            <p className="text-muted-foreground">The ARK & Diar Qatar partnership—the essential execution vehicle to de-risk and deliver the entire project on behalf of QIA, guaranteeing Qatari standards of excellence.</p>
+            <p className="text-muted-foreground">The ARK-Diar Qatar partnership is the non-negotiable execution vehicle. It is the sole mechanism that de-risks delivery and guarantees the asset is built to Qatar's world-class standards.</p>
           </div>
         </BentoCardContent>
       </BentoCard>
