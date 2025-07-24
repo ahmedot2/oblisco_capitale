@@ -47,7 +47,7 @@ export function DashboardHeader() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 2.2 }}
       >
         <p>Presented by:</p>
-        <p>His Excellency Sheikh Jabr bin Thani Al Thani</p>
+        <p>His Excellency Sheikh Jabr bin Jasim bin Thani Al Thani</p>
       </motion.div>
     </header>
   );
