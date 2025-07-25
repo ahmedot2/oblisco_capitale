@@ -46,6 +46,7 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
+        disablePictureInPicture
       >
         <source src={src} type="video/mp4" />
       </video>
