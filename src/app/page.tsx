@@ -67,7 +67,7 @@ export default function Home() {
                                 className="w-full h-full object-cover"
                                 data-ai-hint="video presentation"
                             >
-                                {/* Add a <source> tag here with your video file */}
+                                <source src="/leadership.mp4" type="video/mp4" />
                             </video>
                             <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
                                 <PlayCircle className="w-16 h-16 text-white/50" />
@@ -108,7 +108,7 @@ export default function Home() {
                                 className="w-full h-full object-cover"
                                 data-ai-hint="architectural visualization"
                             >
-                                {/* Add a <source> tag here with your video file */}
+                                <source src="/vision.mp4" type="video/mp4" />
                             </video>
                             <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
                                 <PlayCircle className="w-16 h-16 text-white/50" />
