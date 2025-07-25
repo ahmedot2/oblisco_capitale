@@ -36,6 +36,12 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
     }
   };
 
+  const handleVideoStateChange = () => {
+    if(videoRef.current) {
+      setIsPlaying(!videoRef.current.paused);
+    }
+  }
+
   return (
     <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
       <video
@@ -44,8 +50,9 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
         poster={poster}
         className="w-full h-full object-cover"
         data-ai-hint={hint}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
+        onPlay={handleVideoStateChange}
+        onPause={handleVideoStateChange}
+        onEnded={handleVideoStateChange}
       >
         <source src={src} type="video/mp4" />
       </video>
