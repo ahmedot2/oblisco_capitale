@@ -35,12 +35,6 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
     }
   };
 
-  const handleVideoStateChange = () => {
-    if(videoRef.current) {
-      setIsPlaying(!videoRef.current.paused);
-    }
-  }
-
   return (
     <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
       <video
