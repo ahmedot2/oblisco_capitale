@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
@@ -13,57 +11,13 @@ import { SecureActions } from "@/components/dashboard/secure-actions";
 import { TowerModel } from "@/components/dashboard/tower-model";
 import { UnassailableProposition } from "@/components/dashboard/unassailable-proposition";
 import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "@/components/ui/bento-card";
-import { Button } from "@/components/ui/button";
 import { BriefingModal } from "@/components/modals/briefing-modal";
-import { VaultModal } from "@/components/modals/vault-modal";
 import { NationalStrategy } from "@/components/dashboard/national-strategy";
 import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
-import { DecryptedText } from "@/components/ui/decrypted-text";
 import { TextType } from "@/components/ui/text-type";
-import { PlayCircle } from "lucide-react";
-import React, { useRef, useState } from "react";
-
-
-const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint: string }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlay = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    }
-  };
-
-  return (
-    <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-      <video
-        ref={videoRef}
-        controls={isPlaying}
-        poster={poster}
-        className="w-full h-full object-cover"
-        data-ai-hint={hint}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
-        disablePictureInPicture
-      >
-        <source src={src} type="video/mp4" />
-      </video>
-      {!isPlaying && (
-        <button
-          onClick={handlePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer group"
-          aria-label="Play video"
-        >
-          <PlayCircle className="w-16 h-16 text-white/50 transition-transform group-hover:scale-110" />
-        </button>
-      )}
-    </div>
-  );
-};
-
+import { VideoPlayer } from "@/components/ui/video-player";
 
 export default function Home() {
   return (
