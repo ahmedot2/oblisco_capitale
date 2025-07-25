@@ -67,3 +67,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .video-with-poster:not([data-playing]) video {
+    opacity: 0;
+  }
+  .video-with-poster video[src]:not([src=""]) {
+    opacity: 1;
+  }
+  .video-with-poster[data-playing] video {
+      opacity: 1;
+  }
+  .video-with-poster[data-playing] > div {
+      display: none;
+  }
+}
