@@ -32,7 +32,6 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
   const handlePlay = () => {
     if (videoRef.current) {
       videoRef.current.play();
-      setIsPlaying(true);
     }
   };
 
@@ -50,9 +49,9 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
         poster={poster}
         className="w-full h-full object-cover"
         data-ai-hint={hint}
-        onPlay={handleVideoStateChange}
-        onPause={handleVideoStateChange}
-        onEnded={handleVideoStateChange}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
       >
         <source src={src} type="video/mp4" />
       </video>
