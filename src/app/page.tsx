@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
@@ -32,6 +33,7 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
   const handlePlay = () => {
     if (videoRef.current) {
       videoRef.current.play();
+      setIsPlaying(true);
     }
   };
 
@@ -39,11 +41,10 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
     <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
       <video
         ref={videoRef}
-        controls
+        controls={isPlaying}
         poster={poster}
         className="w-full h-full object-cover"
         data-ai-hint={hint}
-        onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
         disablePictureInPicture
@@ -51,16 +52,18 @@ const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint:
         <source src={src} type="video/mp4" />
       </video>
       {!isPlaying && (
-        <div
-          className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
+        <button
           onClick={handlePlay}
+          className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer group"
+          aria-label="Play video"
         >
-          <PlayCircle className="w-16 h-16 text-white/50 transition-transform hover:scale-110" />
-        </div>
+          <PlayCircle className="w-16 h-16 text-white/50 transition-transform group-hover:scale-110" />
+        </button>
       )}
     </div>
   );
 };
+
 
 export default function Home() {
   return (
