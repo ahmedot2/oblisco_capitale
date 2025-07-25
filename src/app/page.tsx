@@ -22,7 +22,44 @@ import { Separator } from "@/components/ui/separator";
 import { DecryptedText } from "@/components/ui/decrypted-text";
 import { TextType } from "@/components/ui/text-type";
 import { PlayCircle } from "lucide-react";
+import React, { useRef, useState } from "react";
 
+
+const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string; hint: string }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  return (
+    <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+      <video
+        ref={videoRef}
+        controls
+        poster={poster}
+        className="w-full h-full object-cover"
+        data-ai-hint={hint}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+      {!isPlaying && (
+        <div
+          className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
+          onClick={handlePlay}
+        >
+          <PlayCircle className="w-16 h-16 text-white/50 transition-transform hover:scale-110" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function Home() {
   return (
@@ -61,19 +98,11 @@ export default function Home() {
                 <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
                 <BentoCard>
                     <BentoCardContent className="p-6">
-                        <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                            <video
-                                controls
-                                poster="https://placehold.co/1920x1080.png"
-                                className="w-full h-full object-cover"
-                                data-ai-hint="video presentation"
-                            >
-                                <source src="/leadership.mp4" type="video/mp4" />
-                            </video>
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer">
-                                <PlayCircle className="w-16 h-16 text-white/50" />
-                            </div>
-                        </div>
+                       <VideoPlayer 
+                          src="/leadership.mp4"
+                          poster="https://placehold.co/1920x1080.png"
+                          hint="video presentation"
+                       />
                     </BentoCardContent>
                 </BentoCard>
             </section>
@@ -102,19 +131,11 @@ export default function Home() {
                 <h2 id="video-2-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Deeper Dive into the Vision</h2>
                 <BentoCard>
                     <BentoCardContent className="p-6">
-                        <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                            <video
-                                controls
-                                poster="https://placehold.co/1920x1080.png"
-                                className="w-full h-full object-cover"
-                                data-ai-hint="architectural visualization"
-                            >
-                                <source src="/vision.mp4" type="video/mp4" />
-                            </video>
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer">
-                                <PlayCircle className="w-16 h-16 text-white/50" />
-                            </div>
-                        </div>
+                        <VideoPlayer 
+                          src="/vision.mp4"
+                          poster="https://placehold.co/1920x1080.png"
+                          hint="architectural visualization"
+                       />
                     </BentoCardContent>
                 </BentoCard>
             </section>
