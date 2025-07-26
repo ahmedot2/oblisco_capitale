@@ -1,3 +1,4 @@
+
 'use client';
 
 import ReactPlayer from 'react-player/lazy';
@@ -20,14 +21,12 @@ const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
         playIcon={<PlayCircle className="w-20 h-20 text-white/70 hover:text-white transition-colors" />}
         wrapper="div"
         style={{ position: 'absolute', top: 0, left: 0 }}
-        playing={true} // Add playing attribute for autoplay
-        muted={true} // Add muted attribute for autoplay
-        onError={(e, ...rest) => console.error('Video Player Error from onError:', e, ...rest)} // Modified error handling
+        onError={(e, ...rest) => console.error('Video Player Error from onError:', e, ...rest)}
       />
     );
   } catch (error) {
     console.error("Error rendering or initializing ReactPlayer:", error);
-    return null; // Or render a fallback UI
+    return null;
   }
 };
 
