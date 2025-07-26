@@ -103,7 +103,7 @@ export default function Home() {
                             data-ai-hint="architectural visualization"
                             disablePictureInPicture
                           >
-                            <source src="/vision.mp4" type="video/mp4" />
+                            <source src="/vision-dive.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
                         </div>
