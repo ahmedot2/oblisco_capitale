@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
@@ -18,18 +19,8 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
-
-const VideoPlayer = dynamic(() => import('@/components/ui/video-player'), { ssr: false });
 
 export default function Home() {
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
   return (
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
@@ -63,10 +54,18 @@ export default function Home() {
             </section>
             
             <section aria-labelledby="video-1-title">
-                <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
-                 <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                  {hasMounted && <VideoPlayer src="/leadership.mp4" poster="https://placehold.co/1920x1080.png" />}
-                 </div>
+              <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
+              <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                <video
+                  className="w-full h-full object-contain"
+                  poster="https://placehold.co/1920x1080.png"
+                  controls
+                  playsInline
+                >
+                  <source src="/leadership.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </section>
 
             <section aria-labelledby="strategic-imperative-title">
@@ -92,7 +91,15 @@ export default function Home() {
             <section aria-labelledby="video-2-title">
                 <h2 id="video-2-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Deeper Dive into the Vision</h2>
                 <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                  {hasMounted && <VideoPlayer src="/vision-dive.mp4" poster="https://placehold.co/1920x1080.png" />}
+                  <video
+                    className="w-full h-full object-contain"
+                    poster="https://placehold.co/1920x1080.png"
+                    controls
+                    playsInline
+                  >
+                    <source src="/vision-dive.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
             </section>
 
