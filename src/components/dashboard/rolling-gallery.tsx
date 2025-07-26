@@ -1,78 +1,143 @@
 // src/components/dashboard/rolling-gallery.tsx
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { Draggable } from 'gsap/Draggable';
-import Image from 'next/image';
-import './rolling-gallery.css';
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useAnimation, useTransform } from "framer-motion";
+import "./rolling-gallery.css";
 
-gsap.registerPlugin(Draggable);
-
-const images = [
-  { src: 'https://placehold.co/600x400.png', hint: 'luxury hotel lobby' },
-  { src: 'https://placehold.co/600x400.png', hint: 'corporate headquarters' },
-  { src: 'https://placehold.co/600x400.png', hint: 'residential skyscraper view' },
-  { src: 'https://placehold.co/600x400.png', hint: 'fine dining restaurant' },
-  { src: 'https://placehold.co/600x400.png', hint: 'shopping mall interior' },
-  { src: 'https://placehold.co/600x400.png', hint: 'luxury apartment' },
-  { src: 'https://placehold.co/600x400.png', hint: 'conference center' },
-  { src: 'https://placehold.co/600x400.png', hint: 'observation deck' },
-  { src: 'https://placehold.co/600x400.png', hint: 'spa wellness' },
-  { src: 'https://placehold.co/600x400.png', hint: 'business lounge' },
+const IMGS = [
+  "https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1495103033382-fe343886b671?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1506781961370-37a89d6b3095?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1599576838688-8a6c11263108?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1494094892896-7f14a4433b7a?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://plus.unsplash.com/premium_photo-1664910706524-e783eed89e71?q=80&w=3869&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1503788311183-fa3bf9c4bc32?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1585970480901-90d6bb2a48b5?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
-export function RollingGallery() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const rotation = useRef(0);
+const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] }) => {
+  images = IMGS;
+  const [isScreenSizeSm, setIsScreenSizeSm] = useState(false);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const items = gsap.utils.toArray<HTMLDivElement>('.gallery-item');
-    const radius = items[0].offsetWidth * items.length / (2 * Math.PI);
-
-    gsap.set(track, { rotationY: 0, transformOrigin: `50% 50% ${-radius}px` });
-    gsap.set(items, {
-      z: radius,
-      rotationY: (i) => (i * 360) / items.length,
-      transformOrigin: `50% 50% ${-radius}px`,
-    });
-
-    const draggableInstance = Draggable.create(track, {
-      type: 'rotationY',
-      inertia: true,
-      snap: (value) => (Math.round(value / (360/items.length)) * (360/items.length)),
-      onDrag: function () {
-        rotation.current = this.rotationY;
-      },
-    });
-
-    return () => {
-      draggableInstance[0].kill();
+    const checkScreenSize = () => {
+      setIsScreenSizeSm(window.innerWidth <= 640);
     };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+  const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
+  const faceCount = images.length;
+  const faceWidth = (cylinderWidth / faceCount) * 1.5;
+  const dragFactor = 0.05;
+  const radius = cylinderWidth / (2 * Math.PI);
+
+  const rotation = useMotionValue(0);
+  const controls = useAnimation();
+  const autoplayRef = useRef<NodeJS.Timeout>();
+
+  const handleDrag = (_: any, info: { offset: { x: number; }; }) => {
+    rotation.set(rotation.get() + info.offset.x * dragFactor);
+  };
+
+  const handleDragEnd = (_: any, info: { velocity: { x: number; }; }) => {
+    controls.start({
+      rotateY: rotation.get() + info.velocity.x * dragFactor,
+      transition: { type: "spring", stiffness: 60, damping: 20, mass: 0.1, ease: "easeOut" },
+    });
+  };
+
+  const transform = useTransform(rotation, (value) => {
+    return `rotate3d(0, 1, 0, ${value}deg)`;
+  });
+
+  useEffect(() => {
+    if (autoplay) {
+      autoplayRef.current = setInterval(() => {
+        controls.start({
+          rotateY: rotation.get() - (360 / faceCount),
+          transition: { duration: 2, ease: "linear" },
+        });
+        rotation.set(rotation.get() - (360 / faceCount));
+      }, 2000);
+
+      return () => clearInterval(autoplayRef.current);
+    }
+  }, [autoplay, rotation, controls, faceCount]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsScreenSizeSm(window.innerWidth <= 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (autoplay && pauseOnHover) {
+      clearInterval(autoplayRef.current);
+      controls.stop();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (autoplay && pauseOnHover) {
+      controls.start({
+        rotateY: rotation.get() - (360 / faceCount),
+        transition: { duration: 2, ease: "linear" },
+      });
+      rotation.set(rotation.get() - (360 / faceCount));
+
+      autoplayRef.current = setInterval(() => {
+        controls.start({
+          rotateY: rotation.get() - (360 / faceCount),
+          transition: { duration: 2, ease: "linear" },
+        });
+        rotation.set(rotation.get() - (360 / faceCount));
+      }, 2000);
+    }
+  };
 
   return (
     <div className="gallery-container">
-      <div className="gallery-gradient gallery-gradient-left" />
+      <div className="gallery-gradient gallery-gradient-left"></div>
+      <div className="gallery-gradient gallery-gradient-right"></div>
       <div className="gallery-content">
-        <div ref={trackRef} className="gallery-track">
-          {images.map((image, index) => (
-            <div key={index} className="gallery-item">
-              <Image
-                src={image.src}
-                alt={`Gallery image ${index + 1}`}
-                width={300}
-                height={120}
-                className="gallery-img"
-                data-ai-hint={image.hint}
-              />
+        <motion.div
+          drag="x"
+          className="gallery-track"
+          onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+          style={{
+            transform: transform,
+            rotateY: rotation,
+            width: cylinderWidth,
+            transformStyle: "preserve-3d",
+          }}
+          onDrag={handleDrag}
+          onDragEnd={handleDragEnd}
+          animate={controls}
+        >
+          {images.map((url, i) => (
+            <div
+              key={i}
+              className="gallery-item"
+              style={{
+                width: `${faceWidth}px`,
+                transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
+              }}
+            >
+              <img src={url} alt="gallery" className="gallery-img" />
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
-      <div className="gallery-gradient gallery-gradient-right" />
     </div>
   );
-}
+};
+
+export default RollingGallery;
