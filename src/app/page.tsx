@@ -42,7 +42,7 @@ export default function Home() {
           >
            <source src="/background.mp4" type="video/mp4" />
           </video>
-        <div className="absolute inset-0 w-full h-full bg-black/60"></div>
+        <div className="absolute inset-0 w-full h-full bg-black/50"></div>
       </div>
       <div className="relative min-h-screen w-full">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
