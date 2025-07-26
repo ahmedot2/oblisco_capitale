@@ -17,7 +17,6 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
-import { VideoPlayer } from "@/components/ui/video-player";
 
 export default function Home() {
   return (
@@ -56,11 +55,18 @@ export default function Home() {
                 <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
                 <BentoCard>
                     <BentoCardContent className="p-6">
-                       <VideoPlayer 
-                          src="/leadership.mp4"
-                          poster="https://placehold.co/1920x1080.png"
-                          hint="video presentation"
-                       />
+                       <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                          <video
+                            controls
+                            poster="https://placehold.co/1920x1080.png"
+                            className="w-full h-full object-cover"
+                            data-ai-hint="video presentation"
+                            disablePictureInPicture
+                          >
+                            <source src="/leadership.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
                     </BentoCardContent>
                 </BentoCard>
             </section>
@@ -89,11 +95,18 @@ export default function Home() {
                 <h2 id="video-2-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Deeper Dive into the Vision</h2>
                 <BentoCard>
                     <BentoCardContent className="p-6">
-                        <VideoPlayer 
-                          src="/vision.mp4"
-                          poster="https://placehold.co/1920x1080.png"
-                          hint="architectural visualization"
-                       />
+                       <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                          <video
+                            controls
+                            poster="https://placehold.co/1920x1080.png"
+                            className="w-full h-full object-cover"
+                            data-ai-hint="architectural visualization"
+                            disablePictureInPicture
+                          >
+                            <source src="/vision.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
                     </BentoCardContent>
                 </BentoCard>
             </section>
