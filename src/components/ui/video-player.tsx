@@ -10,6 +10,7 @@ export const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string
   const handlePlay = () => {
     if (videoRef.current) {
       videoRef.current.play();
+      setIsPlaying(true);
     }
   };
 
@@ -17,13 +18,10 @@ export const VideoPlayer = ({ src, poster, hint }: { src: string; poster: string
     <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
       <video
         ref={videoRef}
-        controls={isPlaying}
+        controls
         poster={poster}
         className="w-full h-full object-cover"
         data-ai-hint={hint}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
         disablePictureInPicture
       >
         <source src={src} type="video/mp4" />
