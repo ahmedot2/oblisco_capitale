@@ -18,10 +18,10 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
-import ReactPlayer from 'react-player/lazy';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
-import { PlayCircle } from "lucide-react";
 
+const VideoPlayer = dynamic(() => import('@/components/ui/video-player'), { ssr: false });
 
 export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -66,16 +66,7 @@ export default function Home() {
                 <BentoCard>
                     <BentoCardContent className="p-6">
                        <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                        {hasMounted && (
-                          <ReactPlayer
-                            url="/leadership.mp4"
-                            controls
-                            width="100%"
-                            height="100%"
-                            light={<img src='https://placehold.co/1920x1080.png' alt='Video Thumbnail' style={{width: '100%', height: '100%', objectFit: 'cover'}} data-ai-hint="video presentation" />}
-                            playIcon={<PlayCircle className="w-20 h-20 text-white/70 hover:text-white hover:scale-110 transition-all duration-300" />}
-                          />
-                        )}
+                        {hasMounted && <VideoPlayer src="/leadership.mp4" poster="https://placehold.co/1920x1080.png" hint="video presentation" />}
                        </div>
                     </BentoCardContent>
                 </BentoCard>
@@ -106,16 +97,7 @@ export default function Home() {
                 <BentoCard>
                     <BentoCardContent className="p-6">
                         <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                          {hasMounted && (
-                            <ReactPlayer
-                              url="/vision-dive.mp4"
-                              controls
-                              width="100%"
-                              height="100%"
-                              light={<img src='https://placehold.co/1920x1080.png' alt='Video Thumbnail' style={{width: '100%', height: '100%', objectFit: 'cover'}} data-ai-hint="architectural visualization" />}
-                              playIcon={<PlayCircle className="w-20 h-20 text-white/70 hover:text-white hover:scale-110 transition-all duration-300" />}
-                            />
-                          )}
+                          {hasMounted && <VideoPlayer src="/vision-dive.mp4" poster="https://placehold.co/1920x1080.png" hint="architectural visualization" />}
                         </div>
                     </BentoCardContent>
                 </BentoCard>
