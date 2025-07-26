@@ -20,7 +20,6 @@ import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
 import React from 'react';
-import { RollingGallery } from "@/components/dashboard/rolling-gallery";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -113,10 +112,6 @@ export default function Home() {
               <BentoCard>
                 <RiskAndResilienceFramework />
               </BentoCard>
-            </section>
-
-            <section>
-              <RollingGallery />
             </section>
 
             <section aria-labelledby="de-risked-execution-roadmap-title">

@@ -1,91 +1,178 @@
-/* src/components/dashboard/rolling-gallery.css */
-.gallery-container {
-  position: relative;
-  height: 500px;
-  width: 100%;
-  overflow: hidden;
-}
+'use client';
 
-.gallery-gradient {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 48px;
-  z-index: 10;
-  pointer-events: none;
-}
+import { DashboardHeader } from "@/components/dashboard/dashboard-header";
+import { ExecutionTimeline } from "@/components/dashboard/execution-timeline";
+import { InvestmentThesis } from "@/components/dashboard/investment-thesis";
+import { OpportunityMatrix } from "@/components/dashboard/opportunity-matrix";
+import { PartnershipCard } from "@/components/dashboard/partnership-card";
+import { RiskAndResilienceFramework } from "@/components/dashboard/risk-and-resilience-framework";
+import { RoiProjections } from "@/components/dashboard/roi-projections";
+import { SecureActions } from "@/components/dashboard/secure-actions";
+import { TowerModel } from "@/components/dashboard/tower-model";
+import { UnassailableProposition } from "@/components/dashboard/unassailable-proposition";
+import { BentoCard, BentoCardContent, BentoCardHeader, BentoCardTitle } from "@/components/ui/bento-card";
+import { BriefingModal } from "@/components/modals/briefing-modal";
+import { NationalStrategy } from "@/components/dashboard/national-strategy";
+import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
+import { motion } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
+import { TextType } from "@/components/ui/text-type";
+import React from 'react';
 
-.gallery-gradient-left {
-  left: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, #060010 100%);
-}
+export default function Home() {
+  const [hasMounted, setHasMounted] = React.useState(false);
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
-.gallery-gradient-right {
-  right: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #060010 100%);
-}
+  return (
+    <>
+      <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
+        <video
+            className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+           <source src="/background.mp4" type="video/mp4" />
+          </video>
+        <div className="absolute inset-0 w-full h-full bg-black/50"></div>
+      </div>
+      <div className="relative min-h-screen w-full">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <DashboardHeader />
 
-.gallery-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
+          <motion.div 
+            className="mt-12 space-y-20"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+          >
 
-.gallery-track {
-  display: flex;
-  position: relative;
-  height: auto;
-  min-height: 200px;
-  justify-content: center;
-  align-items: center;
-  cursor: grab;
-  transform-style: preserve-3d;
-  width: 100%;
-}
+            <section aria-labelledby="investment-thesis-title">
+              <h2 id="investment-thesis-title" className="text-center text-lg font-semibold text-muted-foreground mb-6">The Investment Thesis</h2>
+              <BentoCard className="p-6">
+                <InvestmentThesis />
+              </BentoCard>
+            </section>
+            
+            <section>
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+                <video
+                  className="w-full h-full object-contain"
+                  controls
+                  preload="metadata"
+                  playsInline
+                >
+                  <source src="/vision-video.mp4#t=0.1" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </section>
 
-.gallery-track:active {
-  cursor: grabbing;
-}
+            <section aria-labelledby="strategic-imperative-title">
+              <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
+               <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
+                <BentoCardHeader className="p-0 mb-6 text-center">
+                  <BentoCardTitle className="font-headline text-2xl">A Generational Asset Secured by an Unrivaled Partnership</BentoCardTitle>
+                </BentoCardHeader>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                  <div className="lg:col-span-1 h-full flex flex-col min-h-[300px] lg:min-h-0">
+                    <TowerModel />
+                  </div>
+                  <div className="lg:col-span-1 h-full flex flex-col">
+                     <PartnershipCard />
+                  </div>
+                  <div className="lg:col-span-1 h-full flex flex-col">
+                    <OpportunityMatrix />
+                  </div>
+                </div>
+              </BentoCard>
+            </section>
+            
+            <section>
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+                <video
+                    className="w-full h-full object-contain"
+                    controls
+                    preload="metadata"
+                    playsInline
+                  >
+                  <source src="/partnership-video.mp4#t=0.1" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </section>
 
-.gallery-item {
-  position: absolute;
-  display: flex;
-  height: fit-content;
-  align-items: center;
-  justify-content: center;
-  padding: 8%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* Safari */
-}
+            <section aria-labelledby="risk-resilience-framework-title">
+              <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Risk &amp; Resilience Framework</h2>
+              <BentoCard>
+                <RiskAndResilienceFramework />
+              </BentoCard>
+            </section>
 
-.gallery-img {
-  pointer-events: none;
-  height: 120px;
-  width: 300px;
-  border-radius: 15px;
-  border: 3px solid #fff;
-  object-fit: cover;
-  transition: 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
+            <section aria-labelledby="de-risked-execution-roadmap-title">
+              <h2 id="de-risked-execution-roadmap-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">III. A De-Risked Execution Roadmap</h2>
+              <BentoCard>
+                <ExecutionTimeline />
+              </BentoCard>
+            </section>
+            
+            <section aria-labelledby="financial-blueprint-title">
+              <h2 id="financial-blueprint-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">IV. The Sovereign Return Proposition</h2>
+               <BentoCard>
+                <RoiProjections />
+              </BentoCard>
+            </section>
 
-.gallery-item:hover .gallery-img {
-  transform: scale(1.05);
-  transition: 0.3s ease;
-}
+            <section aria-labelledby="national-strategy-title">
+              <h2 id="national-strategy-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">V. A Pillar of National Strategy</h2>
+              <BentoCard className="p-6">
+                 <NationalStrategy />
+              </BentoCard>
+            </section>
 
-@media (max-width: 768px) {
-  .gallery-item {
-    padding: 6%;
-  }
-  .gallery-img {
-    height: 100px;
-    width: 220px;
-  }
-  .gallery-gradient {
-    width: 50px;
-  }
+            <section aria-labelledby="strategic-inquiries-title">
+              <h2 id="strategic-inquiries-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VI. Strategic Inquiries</h2>
+              <p className="text-lg text-muted-foreground mb-6">Anticipating the core questions of a decisive partner.</p>
+              <BentoCard>
+                <StrategicInquiries />
+              </BentoCard>
+            </section>
+            
+            <section aria-labelledby="unassailable-proposition-title">
+              <h2 id="unassailable-proposition-title" className="text-3xl font-bold font-headline tracking-tight text-foreground text-center mb-6">VII. Seizing a Generational Mandate</h2>
+                <BentoCard className="p-6 text-center">
+                    <UnassailableProposition />
+                    <Separator className="my-8 bg-white/10" />
+                    <div className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
+                        <TextType 
+                          text="The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to "
+                          as="span"
+                          startOnVisible
+                          loop={false}
+                          typingSpeed={10}
+                        />
+                        <BriefingModal>
+                          <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
+                        </BriefingModal>
+                        <TextType 
+                          text=" that will shape the skyline of the future."
+                          as="span"
+                          startOnVisible
+                          loop={false}
+                          typingSpeed={10}
+                          initialDelay={4000}
+                        />
+                      </div>
+                </BentoCard>
+            </section>
+
+          </motion.div>
+        </main>
+      </div>
+      <SecureActions />
+    </>
+  );
 }
