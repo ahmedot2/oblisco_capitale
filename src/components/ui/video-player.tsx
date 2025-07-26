@@ -6,15 +6,14 @@ import { PlayCircle } from 'lucide-react';
 
 interface VideoPlayerProps {
   src: string;
-  poster: string;
 }
 
-const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
+const VideoPlayer = ({ src }: VideoPlayerProps) => {
   try {
     return (
       <ReactPlayer
         url={src}
-        light={poster}
+        light={true}
         controls={true}
         width="100%"
         height="100%"

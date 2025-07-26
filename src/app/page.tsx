@@ -69,7 +69,6 @@ export default function Home() {
                 {hasMounted && (
                   <VideoPlayer
                     src="/vision-video.mp4"
-                    poster="https://placehold.co/1920x1080.png"
                   />
                 )}
               </div>
@@ -100,7 +99,6 @@ export default function Home() {
                 {hasMounted && (
                   <VideoPlayer
                     src="/partnership-video.mp4"
-                    poster="https://placehold.co/1920x1080.png"
                   />
                 )}
               </div>
