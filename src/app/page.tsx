@@ -19,8 +19,19 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
+import dynamic from 'next/dynamic';
+import React from 'react';
+
+const VideoPlayer = dynamic(() => import('@/components/ui/video-player'), {
+  ssr: false,
+});
 
 export default function Home() {
+  const [hasMounted, setHasMounted] = React.useState(false);
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   return (
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
@@ -54,18 +65,14 @@ export default function Home() {
             </section>
             
             <section>
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                <video
-                  className="w-full h-full object-cover"
-                  poster="https://placehold.co/1920x1080.png"
-                  controls
-                  playsInline
-                  data-ai-hint="business presentation skyline"
-                >
-                  <source src="/0726-1.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+                {hasMounted && (
+                    <VideoPlayer
+                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    poster="https://placehold.co/1920x1080.png"
+                    />
+                )}
+                </div>
             </section>
 
             <section aria-labelledby="strategic-imperative-title">
@@ -89,18 +96,14 @@ export default function Home() {
             </section>
             
             <section>
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                <video
-                  className="w-full h-full object-cover"
-                  poster="https://placehold.co/1920x1080.png"
-                  controls
-                  playsInline
-                  data-ai-hint="team handshake deal"
-                >
-                  <source src="/0726(1)-1.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+                {hasMounted && (
+                    <VideoPlayer
+                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                    poster="https://placehold.co/1920x1080.png"
+                    />
+                )}
+                </div>
             </section>
 
             <section aria-labelledby="risk-resilience-framework-title">
