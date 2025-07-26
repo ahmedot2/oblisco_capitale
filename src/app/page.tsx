@@ -73,7 +73,6 @@ export default function Home() {
                             width="100%"
                             height="100%"
                             light={<img src='https://placehold.co/1920x1080.png' alt='Video Thumbnail' style={{width: '100%', height: '100%', objectFit: 'cover'}} data-ai-hint="video presentation" />}
-                            playing
                             playIcon={<PlayCircle className="w-20 h-20 text-white/70 hover:text-white hover:scale-110 transition-all duration-300" />}
                           />
                         )}
@@ -114,7 +113,6 @@ export default function Home() {
                               width="100%"
                               height="100%"
                               light={<img src='https://placehold.co/1920x1080.png' alt='Video Thumbnail' style={{width: '100%', height: '100%', objectFit: 'cover'}} data-ai-hint="architectural visualization" />}
-                              playing
                               playIcon={<PlayCircle className="w-20 h-20 text-white/70 hover:text-white hover:scale-110 transition-all duration-300" />}
                             />
                           )}
