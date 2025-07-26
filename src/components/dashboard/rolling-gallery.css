@@ -1,0 +1,92 @@
+/* src/components/dashboard/rolling-gallery.css */
+.gallery-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-gradient {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.gallery-gradient-left {
+  left: 0;
+  background: linear-gradient(to right, hsl(var(--background)) 20%, transparent 100%);
+}
+
+.gallery-gradient-right {
+  right: 0;
+  background: linear-gradient(to left, hsl(var(--background)) 20%, transparent 100%);
+}
+
+.gallery-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.gallery-track {
+  display: flex;
+  position: relative;
+  height: auto;
+  min-height: 200px;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  transform-style: preserve-3d;
+  width: 100%;
+}
+
+.gallery-track:active {
+  cursor: grabbing;
+}
+
+.gallery-item {
+  position: absolute;
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 8%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Safari */
+}
+
+.gallery-img {
+  pointer-events: none;
+  height: 120px;
+  width: 300px;
+  border-radius: 1rem;
+  border: 3px solid hsl(var(--border));
+  object-fit: cover;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+  border-color: hsl(var(--primary));
+  transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    padding: 6%;
+  }
+  .gallery-img {
+    height: 100px;
+    width: 220px;
+  }
+  .gallery-gradient {
+    width: 50px;
+  }
+}
