@@ -53,21 +53,6 @@ export default function Home() {
               </BentoCard>
             </section>
             
-            <section aria-labelledby="video-1-title">
-              <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
-              <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                <video
-                  className="w-full h-full object-contain"
-                  poster="https://placehold.co/1920x1080.png"
-                  controls
-                  playsInline
-                >
-                  <source src="/leadership.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </section>
-
             <section aria-labelledby="strategic-imperative-title">
               <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
                <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
@@ -88,21 +73,6 @@ export default function Home() {
               </BentoCard>
             </section>
             
-            <section aria-labelledby="video-2-title">
-                <h2 id="video-2-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Deeper Dive into the Vision</h2>
-                <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                  <video
-                    className="w-full h-full object-contain"
-                    poster="https://placehold.co/1920x1080.png"
-                    controls
-                    playsInline
-                  >
-                    <source src="/vision-dive.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-            </section>
-
             <section aria-labelledby="risk-resilience-framework-title">
               <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Risk &amp; Resilience Framework</h2>
               <BentoCard>
