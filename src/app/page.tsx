@@ -54,21 +54,17 @@ export default function Home() {
             
             <section aria-labelledby="video-1-title">
                 <h2 id="video-1-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Message from the Leadership</h2>
-                <BentoCard>
-                    <BentoCardContent className="p-6">
-                       <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                        <video 
-                          src="/leadership.mp4" 
-                          poster="https://placehold.co/1920x1080.png"
-                          controls 
-                          playsInline
-                          className="w-full h-full object-cover"
-                        >
-                          Your browser does not support the video tag.
-                        </video>
-                       </div>
-                    </BentoCardContent>
-                </BentoCard>
+                 <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                  <video 
+                    src="/leadership.mp4" 
+                    poster="https://placehold.co/1920x1080.png"
+                    controls 
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                 </div>
             </section>
 
             <section aria-labelledby="strategic-imperative-title">
@@ -93,21 +89,17 @@ export default function Home() {
             
             <section aria-labelledby="video-2-title">
                 <h2 id="video-2-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">A Deeper Dive into the Vision</h2>
-                <BentoCard>
-                    <BentoCardContent className="p-6">
-                        <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
-                          <video 
-                            src="/vision-dive.mp4" 
-                            poster="https://placehold.co/1920x1080.png"
-                            controls 
-                            playsInline
-                            className="w-full h-full object-cover"
-                          >
-                            Your browser does not support the video tag.
-                          </video>
-                        </div>
-                    </BentoCardContent>
-                </BentoCard>
+                <div className="relative aspect-video w-full bg-muted rounded-lg overflow-hidden border border-border">
+                  <video 
+                    src="/vision-dive.mp4" 
+                    poster="https://placehold.co/1920x1080.png"
+                    controls 
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
             </section>
 
             <section aria-labelledby="risk-resilience-framework-title">
