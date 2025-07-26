@@ -62,7 +62,7 @@ export default function Home() {
                   playsInline
                   data-ai-hint="business presentation skyline"
                 >
-                  <source src="/vision-video.mp4" type="video/mp4" />
+                  <source src="/0726-1.mov" type="video/mov" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -97,7 +97,7 @@ export default function Home() {
                   playsInline
                   data-ai-hint="team handshake deal"
                 >
-                  <source src="/partnership-video.mp4" type="video/mp4" />
+                  <source src="/0726(1)-1.mov" type="video/mov" />
                   Your browser does not support the video tag.
                 </video>
               </div>
