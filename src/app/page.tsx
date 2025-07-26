@@ -19,12 +19,7 @@ import { StrategicInquiries } from "@/components/dashboard/strategic-inquiries";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
-import dynamic from 'next/dynamic';
 import React from 'react';
-
-const VideoPlayer = dynamic(() => import('@/components/ui/video-player'), {
-  ssr: false,
-});
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -66,11 +61,15 @@ export default function Home() {
             
             <section>
               <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                {hasMounted && (
-                  <VideoPlayer
-                    src="/vision-video.mp4"
-                  />
-                )}
+                <video
+                  className="w-full h-full object-contain"
+                  controls
+                  preload="metadata"
+                  playsInline
+                >
+                  <source src="/vision-video.mp4#t=0.1" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </section>
 
@@ -96,11 +95,15 @@ export default function Home() {
             
             <section>
               <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                {hasMounted && (
-                  <VideoPlayer
-                    src="/partnership-video.mp4"
-                  />
-                )}
+                <video
+                    className="w-full h-full object-contain"
+                    controls
+                    preload="metadata"
+                    playsInline
+                  >
+                  <source src="/partnership-video.mp4#t=0.1" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </section>
 
