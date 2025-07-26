@@ -65,14 +65,14 @@ export default function Home() {
             </section>
             
             <section>
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                 {hasMounted && (
-                    <VideoPlayer
-                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                  <VideoPlayer
+                    src="/vision-video.mp4"
                     poster="https://placehold.co/1920x1080.png"
-                    />
+                  />
                 )}
-                </div>
+              </div>
             </section>
 
             <section aria-labelledby="strategic-imperative-title">
@@ -96,14 +96,14 @@ export default function Home() {
             </section>
             
             <section>
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                 {hasMounted && (
-                    <VideoPlayer
-                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                  <VideoPlayer
+                    src="/partnership-video.mp4"
                     poster="https://placehold.co/1920x1080.png"
-                    />
+                  />
                 )}
-                </div>
+              </div>
             </section>
 
             <section aria-labelledby="risk-resilience-framework-title">
