@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useAnimation, useTransform } from "framer-motion";
 import "./rolling-gallery.css";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
 
 const IMGS = [
   "/gallery-1.jpg",
@@ -20,6 +22,7 @@ const IMGS = [
 const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] }) => {
   images = IMGS;
   const [isScreenSizeSm, setIsScreenSizeSm] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -104,39 +107,54 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
   };
 
   return (
-    <div className="gallery-container">
-      <div className="gallery-gradient gallery-gradient-left"></div>
-      <div className="gallery-gradient gallery-gradient-right"></div>
-      <div className="gallery-content">
-        <motion.div
-          drag="x"
-          className="gallery-track"
-          onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
-          style={{
-            transform: transform,
-            rotateY: rotation,
-            width: cylinderWidth,
-            transformStyle: "preserve-3d",
-          }}
-          onDrag={handleDrag}
-          onDragEnd={handleDragEnd}
-          animate={controls}
-        >
-          {images.map((url, i) => (
-            <div
-              key={i}
-              className="gallery-item"
-              style={{
-                width: `${faceWidth}px`,
-                transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
-              }}
-            >
-              <img src={url} alt="gallery" className="gallery-img" />
-            </div>
-          ))}
-        </motion.div>
+    <Dialog>
+      <div className="gallery-container">
+        <div className="gallery-gradient gallery-gradient-left"></div>
+        <div className="gallery-gradient gallery-gradient-right"></div>
+        <div className="gallery-content">
+          <motion.div
+            drag="x"
+            className="gallery-track"
+            onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+            style={{
+              transform: transform,
+              rotateY: rotation,
+              width: cylinderWidth,
+              transformStyle: "preserve-3d",
+            }}
+            onDrag={handleDrag}
+            onDragEnd={handleDragEnd}
+            animate={controls}
+          >
+            {images.map((url, i) => (
+              <DialogTrigger asChild key={i}>
+                <div
+                  className="gallery-item"
+                  onClick={() => setSelectedImage(url)}
+                  style={{
+                    width: `${faceWidth}px`,
+                    transform: `rotateY(${i * (360 / faceCount)}deg) translateZ(${radius}px)`,
+                  }}
+                >
+                  <img src={url} alt={`gallery image ${i + 1}`} className="gallery-img" />
+                </div>
+              </DialogTrigger>
+            ))}
+          </motion.div>
+        </div>
       </div>
-    </div>
+      <DialogContent className="max-w-4xl p-0 bg-transparent border-0">
+        {selectedImage && (
+          <Image
+            src={selectedImage}
+            alt="Enlarged gallery view"
+            width={1200}
+            height={800}
+            className="w-full h-auto object-contain rounded-lg"
+          />
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 
