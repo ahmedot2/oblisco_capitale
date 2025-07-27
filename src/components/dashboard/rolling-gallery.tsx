@@ -146,7 +146,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
         <DialogTitle className="sr-only">Enlarged Gallery Image</DialogTitle>
         {selectedImage && (
           <Image
-            src={selectedImage}
+            src={`${selectedImage}?t=${new Date().getTime()}`}
             alt="Enlarged gallery view"
             width={1200}
             height={800}
