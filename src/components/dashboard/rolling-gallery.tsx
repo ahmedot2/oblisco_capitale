@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useAnimation, useTransform } from "framer-motion";
 import "./rolling-gallery.css";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 
 const IMGS = [
@@ -144,6 +144,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
         </div>
       </div>
       <DialogContent className="max-w-4xl p-0 bg-transparent border-0">
+        <DialogTitle className="sr-only">Enlarged Gallery Image</DialogTitle>
         {selectedImage && (
           <Image
             src={selectedImage}
