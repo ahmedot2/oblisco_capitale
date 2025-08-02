@@ -22,15 +22,21 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
   images = IMGS;
   const [isScreenSizeSm, setIsScreenSizeSm] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  
+  useEffect(() => {
+    if (!hasMounted) return;
     const checkScreenSize = () => {
       setIsScreenSizeSm(window.innerWidth <= 640);
     };
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
+  }, [hasMounted]);
 
   const cylinderWidth = isScreenSizeSm ? 1100 : 2500;
   const faceCount = images.length;
@@ -105,6 +111,10 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
     }
   };
 
+  if (!hasMounted) {
+    return <div className="gallery-container" />;
+  }
+  
   return (
     <Dialog>
       <div className="gallery-container">
