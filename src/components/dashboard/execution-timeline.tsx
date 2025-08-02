@@ -1,6 +1,7 @@
 // src/components/dashboard/execution-timeline.tsx
 'use client';
 
+import { useState, useEffect } from 'react';
 import { BentoCardContent, BentoCardDescription, BentoCardHeader, BentoCardTitle } from "../ui/bento-card";
 import {
   Tooltip,
@@ -63,7 +64,28 @@ const MobileTimeline = () => (
 
 
 export function ExecutionTimeline() {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const isMobile = useIsMobile();
+  
+  if (!hasMounted) {
+    // Render a placeholder or null on the server and initial client render
+    return (
+        <>
+            <BentoCardHeader>
+                <BentoCardTitle className="font-headline">A De-Risked Execution Roadmap</BentoCardTitle>
+                <BentoCardDescription>A phased approach ensuring on-time, on-budget delivery.</BentoCardDescription>
+            </BentoCardHeader>
+            <BentoCardContent>
+                <div className="w-full h-24" />
+            </BentoCardContent>
+        </>
+    );
+  }
 
   return (
     <>
