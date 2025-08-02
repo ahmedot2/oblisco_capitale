@@ -72,7 +72,6 @@ export function ExecutionTimeline() {
   }, []);
   
   if (!hasMounted) {
-    // Render a placeholder or null on the server and initial client render
     return (
         <>
             <BentoCardHeader>
@@ -80,7 +79,7 @@ export function ExecutionTimeline() {
                 <BentoCardDescription>A phased approach ensuring on-time, on-budget delivery.</BentoCardDescription>
             </BentoCardHeader>
             <BentoCardContent>
-                <div className="w-full h-24" />
+                <div className="w-full h-24 bg-muted/20 animate-pulse rounded-lg" />
             </BentoCardContent>
         </>
     );

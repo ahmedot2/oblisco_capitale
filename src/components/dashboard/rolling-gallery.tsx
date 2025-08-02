@@ -64,7 +64,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
   });
 
   useEffect(() => {
-    if (autoplay) {
+    if (autoplay && hasMounted) {
       autoplayRef.current = setInterval(() => {
         controls.start({
           rotateY: rotation.get() - (360 / faceCount),
@@ -75,16 +75,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
 
       return () => clearInterval(autoplayRef.current);
     }
-  }, [autoplay, rotation, controls, faceCount]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsScreenSizeSm(window.innerWidth <= 640);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [autoplay, rotation, controls, faceCount, hasMounted]);
 
   const handleMouseEnter = () => {
     if (autoplay && pauseOnHover) {
@@ -112,7 +103,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
   };
 
   if (!hasMounted) {
-    return <div className="gallery-container" />;
+    return <div className="gallery-container h-64 w-full bg-muted/20 animate-pulse rounded-lg" />;
   }
   
   return (
