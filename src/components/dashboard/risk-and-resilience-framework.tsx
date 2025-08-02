@@ -1,7 +1,7 @@
 // src/components/dashboard/risk-and-resilience-framework.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowDown, ArrowUp, Minus, ShieldCheck } from 'lucide-react';
 import { useCountUp } from '@/hooks/use-count-up';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -83,7 +83,26 @@ const frameworkData = [
 
 export function RiskAndResilienceFramework() {
   const [selectedRisk, setSelectedRisk] = useState<string | null>(frameworkData[0].id);
+  const [hasMounted, setHasMounted] = useState(false);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return (
+      <>
+        <BentoCardHeader>
+          <BentoCardTitle className="font-headline">The Risk & Resilience Framework</BentoCardTitle>
+          <BentoCardDescription>A proactive methodology for transforming systemic risk into strategic advantage.</BentoCardDescription>
+        </BentoCardHeader>
+        <BentoCardContent className='p-6'>
+          <div className="h-64 w-full bg-muted/20 animate-pulse rounded-lg" />
+        </BentoCardContent>
+      </>
+    );
+  }
 
   const handleInteraction = (id: string) => {
     setSelectedRisk(prev => (prev === id ? null : id));
