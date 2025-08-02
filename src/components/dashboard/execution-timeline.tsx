@@ -65,12 +65,11 @@ const MobileTimeline = () => (
 
 export function ExecutionTimeline() {
   const [hasMounted, setHasMounted] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setHasMounted(true);
   }, []);
-
-  const isMobile = useIsMobile();
   
   if (!hasMounted) {
     // Render a placeholder or null on the server and initial client render

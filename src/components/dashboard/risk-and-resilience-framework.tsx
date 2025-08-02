@@ -116,6 +116,7 @@ export function RiskAndResilienceFramework() {
     }
     return {
       onMouseEnter: () => setSelectedRisk(id),
+      onMouseLeave: () => isMobile ? null : setSelectedRisk(null)
     };
   };
 

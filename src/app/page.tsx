@@ -46,137 +46,139 @@ export default function Home() {
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <DashboardHeader />
 
-          <motion.div 
-            className="mt-12 space-y-20"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-          >
+          {hasMounted && (
+            <motion.div 
+              className="mt-12 space-y-20"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+            >
 
-            <section aria-labelledby="investment-thesis-title">
-              <h2 id="investment-thesis-title" className="text-center text-lg font-semibold text-muted-foreground mb-6">The Investment Thesis</h2>
-              <BentoCard className="p-6">
-                <InvestmentThesis />
-              </BentoCard>
-            </section>
-            
-            <section>
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                <video
-                  className="w-full h-full object-contain"
-                  controls
-                  preload="metadata"
-                  playsInline
-                >
-                  <source src="/vision-video.mp4#t=0.1" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </section>
-
-            <section aria-labelledby="strategic-imperative-title">
-              <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
-               <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
-                <BentoCardHeader className="p-0 mb-6 text-center">
-                  <BentoCardTitle className="font-headline text-2xl">A Generational Asset Secured by an Unrivaled Partnership</BentoCardTitle>
-                </BentoCardHeader>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
-                  <div className="lg:col-span-1 h-full flex flex-col min-h-[300px] lg:min-h-0">
-                    <TowerModel />
-                  </div>
-                  <div className="lg:col-span-1 h-full flex flex-col">
-                     <PartnershipCard />
-                  </div>
-                  <div className="lg:col-span-1 h-full flex flex-col">
-                    <OpportunityMatrix />
-                  </div>
-                </div>
-              </BentoCard>
-            </section>
-            
-            <section>
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                <video
+              <section aria-labelledby="investment-thesis-title">
+                <h2 id="investment-thesis-title" className="text-center text-lg font-semibold text-muted-foreground mb-6">The Investment Thesis</h2>
+                <BentoCard className="p-6">
+                  <InvestmentThesis />
+                </BentoCard>
+              </section>
+              
+              <section>
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+                  <video
                     className="w-full h-full object-contain"
                     controls
                     preload="metadata"
                     playsInline
                   >
-                  <source src="/partnership-video.mp4#t=0.1" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </section>
+                    <source src="/vision-video.mp4#t=0.1" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </section>
 
-            <section aria-labelledby="risk-resilience-framework-title">
-              <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Risk &amp; Resilience Framework</h2>
-              <BentoCard>
-                <RiskAndResilienceFramework />
-              </BentoCard>
-            </section>
-
-            <section>
-              <RollingGallery />
-            </section>
-
-            <section aria-labelledby="de-risked-execution-roadmap-title">
-              <h2 id="de-risked-execution-roadmap-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">III. A De-Risked Execution Roadmap</h2>
-              <BentoCard>
-                <ExecutionTimeline />
-              </BentoCard>
-            </section>
-            
-            <section aria-labelledby="financial-blueprint-title">
-              <h2 id="financial-blueprint-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">IV. The Sovereign Return Proposition</h2>
-               <BentoCard>
-                <RoiProjections />
-              </BentoCard>
-            </section>
-
-            <section aria-labelledby="national-strategy-title">
-              <h2 id="national-strategy-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">V. A Pillar of National Strategy</h2>
-              <BentoCard className="p-6">
-                 <NationalStrategy />
-              </BentoCard>
-            </section>
-
-            <section aria-labelledby="strategic-inquiries-title">
-              <h2 id="strategic-inquiries-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VI. Strategic Inquiries</h2>
-              <p className="text-lg text-muted-foreground mb-6">Anticipating the core questions of a decisive partner.</p>
-              <BentoCard>
-                <StrategicInquiries />
-              </BentoCard>
-            </section>
-            
-            <section aria-labelledby="unassailable-proposition-title">
-              <h2 id="unassailable-proposition-title" className="text-3xl font-bold font-headline tracking-tight text-foreground text-center mb-6">VII. Seizing a Generational Mandate</h2>
-                <BentoCard className="p-6 text-center">
-                    <UnassailableProposition />
-                    <Separator className="my-8 bg-white/10" />
-                    <div className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
-                        <TextType 
-                          text="The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to "
-                          as="span"
-                          startOnVisible
-                          loop={false}
-                          typingSpeed={10}
-                        />
-                        <BriefingModal>
-                          <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
-                        </BriefingModal>
-                        <TextType 
-                          text=" that will shape the skyline of the future."
-                          as="span"
-                          startOnVisible
-                          loop={false}
-                          typingSpeed={10}
-                          initialDelay={4000}
-                        />
-                      </div>
+              <section aria-labelledby="strategic-imperative-title">
+                <h2 id="strategic-imperative-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">I. The Strategic Imperative</h2>
+                <BentoCard className="lg:col-span-3 min-h-[400px] p-6">
+                  <BentoCardHeader className="p-0 mb-6 text-center">
+                    <BentoCardTitle className="font-headline text-2xl">A Generational Asset Secured by an Unrivaled Partnership</BentoCardTitle>
+                  </BentoCardHeader>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                    <div className="lg:col-span-1 h-full flex flex-col min-h-[300px] lg:min-h-0">
+                      <TowerModel />
+                    </div>
+                    <div className="lg:col-span-1 h-full flex flex-col">
+                      <PartnershipCard />
+                    </div>
+                    <div className="lg:col-span-1 h-full flex flex-col">
+                      <OpportunityMatrix />
+                    </div>
+                  </div>
                 </BentoCard>
-            </section>
+              </section>
+              
+              <section>
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
+                  <video
+                      className="w-full h-full object-contain"
+                      controls
+                      preload="metadata"
+                      playsInline
+                    >
+                    <source src="/partnership-video.mp4#t=0.1" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </section>
 
-          </motion.div>
+              <section aria-labelledby="risk-resilience-framework-title">
+                <h2 id="risk-resilience-framework-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">II. The Risk &amp; Resilience Framework</h2>
+                <BentoCard>
+                  <RiskAndResilienceFramework />
+                </BentoCard>
+              </section>
+
+              <section>
+                <RollingGallery />
+              </section>
+
+              <section aria-labelledby="de-risked-execution-roadmap-title">
+                <h2 id="de-risked-execution-roadmap-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">III. A De-Risked Execution Roadmap</h2>
+                <BentoCard>
+                  <ExecutionTimeline />
+                </BentoCard>
+              </section>
+              
+              <section aria-labelledby="financial-blueprint-title">
+                <h2 id="financial-blueprint-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">IV. The Sovereign Return Proposition</h2>
+                <BentoCard>
+                  <RoiProjections />
+                </BentoCard>
+              </section>
+
+              <section aria-labelledby="national-strategy-title">
+                <h2 id="national-strategy-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-6">V. A Pillar of National Strategy</h2>
+                <BentoCard className="p-6">
+                  <NationalStrategy />
+                </BentoCard>
+              </section>
+
+              <section aria-labelledby="strategic-inquiries-title">
+                <h2 id="strategic-inquiries-title" className="text-3xl font-bold font-headline tracking-tight text-foreground mb-4">VI. Strategic Inquiries</h2>
+                <p className="text-lg text-muted-foreground mb-6">Anticipating the core questions of a decisive partner.</p>
+                <BentoCard>
+                  <StrategicInquiries />
+                </BentoCard>
+              </section>
+              
+              <section aria-labelledby="unassailable-proposition-title">
+                <h2 id="unassailable-proposition-title" className="text-3xl font-bold font-headline tracking-tight text-foreground text-center mb-6">VII. Seizing a Generational Mandate</h2>
+                  <BentoCard className="p-6 text-center">
+                      <UnassailableProposition />
+                      <Separator className="my-8 bg-white/10" />
+                      <div className="text-lg text-muted-foreground text-justify max-w-3xl mx-auto">
+                          <TextType 
+                            text="The Oblisco Capitale is more than an investment; it is a declaration of global prestige, secured by a de-risked financial structure and an unparalleled execution partnership. The opportunity is definitive. The moment is now. We stand ready to "
+                            as="span"
+                            startOnVisible
+                            loop={false}
+                            typingSpeed={10}
+                          />
+                          <BriefingModal>
+                            <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
+                          </BriefingModal>
+                          <TextType 
+                            text=" that will shape the skyline of the future."
+                            as="span"
+                            startOnVisible
+                            loop={false}
+                            typingSpeed={10}
+                            initialDelay={4000}
+                          />
+                        </div>
+                  </BentoCard>
+              </section>
+
+            </motion.div>
+          )}
         </main>
       </div>
       <SecureActions />
