@@ -120,7 +120,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] })
               transform: transform,
               rotateY: rotation,
               width: cylinderWidth,
-              transformStyle: "preserve-3d",
+              transformStyle: "preserve-d",
             }}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}

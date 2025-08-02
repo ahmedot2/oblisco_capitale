@@ -71,20 +71,6 @@ export function ExecutionTimeline() {
     setHasMounted(true);
   }, []);
   
-  if (!hasMounted) {
-    return (
-        <>
-            <BentoCardHeader>
-                <BentoCardTitle className="font-headline">A De-Risked Execution Roadmap</BentoCardTitle>
-                <BentoCardDescription>A phased approach ensuring on-time, on-budget delivery.</BentoCardDescription>
-            </BentoCardHeader>
-            <BentoCardContent>
-                <div className="w-full h-24 bg-muted/20 animate-pulse rounded-lg" />
-            </BentoCardContent>
-        </>
-    );
-  }
-
   return (
     <>
       <BentoCardHeader>
@@ -92,7 +78,13 @@ export function ExecutionTimeline() {
         <BentoCardDescription>A phased approach ensuring on-time, on-budget delivery.</BentoCardDescription>
       </BentoCardHeader>
       <BentoCardContent>
-        {isMobile ? <MobileTimeline /> : <DesktopTimeline />}
+        {!hasMounted ? (
+          <div className="w-full h-24 bg-muted/20 animate-pulse rounded-lg" />
+        ) : isMobile ? (
+          <MobileTimeline />
+        ) : (
+          <DesktopTimeline />
+        )}
       </BentoCardContent>
     </>
   );

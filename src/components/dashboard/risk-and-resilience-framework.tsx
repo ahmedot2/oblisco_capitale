@@ -90,20 +90,6 @@ export function RiskAndResilienceFramework() {
     setHasMounted(true);
   }, []);
 
-  if (!hasMounted) {
-    return (
-      <>
-        <BentoCardHeader>
-          <BentoCardTitle className="font-headline">The Risk & Resilience Framework</BentoCardTitle>
-          <BentoCardDescription>A proactive methodology for transforming systemic risk into strategic advantage.</BentoCardDescription>
-        </BentoCardHeader>
-        <BentoCardContent className='p-6'>
-          <div className="h-64 w-full bg-muted/20 animate-pulse rounded-lg" />
-        </BentoCardContent>
-      </>
-    );
-  }
-
   const handleInteraction = (id: string) => {
     setSelectedRisk(prev => (prev === id ? null : id));
   };
@@ -129,94 +115,98 @@ export function RiskAndResilienceFramework() {
         <BentoCardDescription>A proactive methodology for transforming systemic risk into strategic advantage.</BentoCardDescription>
       </BentoCardHeader>
       <BentoCardContent className='p-6'>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className='flex flex-col gap-4'>
-            <TooltipProvider>
-              {frameworkData.map(({ id, risk, shield }) => {
-                const isSelected = selectedRisk === id;
-                return (
-                  <div 
-                    key={id} 
-                    className="flex-1"
-                    {...getInteractionHandlers(id)}
-                  >
-                    <div
-                      className={cn(
-                        "bg-white/5 p-4 rounded-lg border border-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full",
-                        isSelected && !isMobile && "border-primary ring-2 ring-primary"
-                      )}
+        {!hasMounted ? (
+           <div className="h-64 w-full bg-muted/20 animate-pulse rounded-lg" />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className='flex flex-col gap-4'>
+              <TooltipProvider>
+                {frameworkData.map(({ id, risk, shield }) => {
+                  const isSelected = selectedRisk === id;
+                  return (
+                    <div 
+                      key={id} 
+                      className="flex-1"
+                      {...getInteractionHandlers(id)}
                     >
-                      <div className="flex justify-between items-center">
-                        <h3 className="font-semibold text-sm">{risk.name}</h3>
-                        <div className="flex items-center gap-1 text-xs capitalize text-muted-foreground">
-                          {risk.trendIcon}
-                          <span>{risk.trend}</span>
-                        </div>
-                      </div>
-                      <p className="text-2xl font-bold mt-2">
-                        {risk.metric ? <><CountUpNumber to={risk.metric} decimals={risk.metric === 90.3 || risk.metric === 35.7 ? 1 : 0} />{risk.metricSuffix}</> : risk.metricText}
-                      </p>
-                      <div className="mt-2 text-xs text-primary space-y-1">
-                        <div className="text-muted-foreground leading-tight">Mitigation:
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <span className="text-primary/50 opacity-50 hover:opacity-100 transition-opacity cursor-pointer text-xs ml-1">[cite: {risk.citation}]</span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Source: OBLISCO_MACRO_ANALYSIS.PDF</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
-                      </div>
-                      <AnimatePresence>
-                        {isMobile && isSelected && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                            animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="overflow-hidden"
-                          >
-                            <div className="flex items-start gap-3 pt-4 border-t border-white/10">
-                              <ShieldCheck className="w-6 h-6 text-primary shrink-0 mt-1" />
-                              <div>
-                                <h4 className="font-bold text-sm text-primary">{shield.headline}</h4>
-                                <p className="text-sm text-foreground">{shield.text}</p>
-                                <p className="text-xs text-muted-foreground mt-2">{shield.attribution}</p>
-                              </div>
-                            </div>
-                          </motion.div>
+                      <div
+                        className={cn(
+                          "bg-white/5 p-4 rounded-lg border border-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full",
+                          isSelected && !isMobile && "border-primary ring-2 ring-primary"
                         )}
-                      </AnimatePresence>
+                      >
+                        <div className="flex justify-between items-center">
+                          <h3 className="font-semibold text-sm">{risk.name}</h3>
+                          <div className="flex items-center gap-1 text-xs capitalize text-muted-foreground">
+                            {risk.trendIcon}
+                            <span>{risk.trend}</span>
+                          </div>
+                        </div>
+                        <p className="text-2xl font-bold mt-2">
+                          {risk.metric ? <><CountUpNumber to={risk.metric} decimals={risk.metric === 90.3 || risk.metric === 35.7 ? 1 : 0} />{risk.metricSuffix}</> : risk.metricText}
+                        </p>
+                        <div className="mt-2 text-xs text-primary space-y-1">
+                          <div className="text-muted-foreground leading-tight">Mitigation:
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <span className="text-primary/50 opacity-50 hover:opacity-100 transition-opacity cursor-pointer text-xs ml-1">[cite: {risk.citation}]</span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Source: OBLISCO_MACRO_ANALYSIS.PDF</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+                        </div>
+                        <AnimatePresence>
+                          {isMobile && isSelected && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex items-start gap-3 pt-4 border-t border-white/10">
+                                <ShieldCheck className="w-6 h-6 text-primary shrink-0 mt-1" />
+                                <div>
+                                  <h4 className="font-bold text-sm text-primary">{shield.headline}</h4>
+                                  <p className="text-sm text-foreground">{shield.text}</p>
+                                  <p className="text-xs text-muted-foreground mt-2">{shield.attribution}</p>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </TooltipProvider>
-          </div>
+                  );
+                })}
+              </TooltipProvider>
+            </div>
 
-          <div className="relative hidden md:block">
-            <AnimatePresence mode="wait">
-              {selectedShield && (
-                <motion.div
-                  key={selectedRisk}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="bg-secondary/50 p-4 rounded-lg border border-primary/30 h-full w-full sticky top-24"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
-                    <h4 className="font-bold text-base text-primary">{selectedShield.headline}</h4>
-                  </div>
-                  <p className="text-sm text-foreground">{selectedShield.text}</p>
-                  <p className="text-xs text-muted-foreground mt-2">{selectedShield.attribution}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className="relative hidden md:block">
+              <AnimatePresence mode="wait">
+                {selectedShield && (
+                  <motion.div
+                    key={selectedRisk}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="bg-secondary/50 p-4 rounded-lg border border-primary/30 h-full w-full sticky top-24"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
+                      <h4 className="font-bold text-base text-primary">{selectedShield.headline}</h4>
+                    </div>
+                    <p className="text-sm text-foreground">{selectedShield.text}</p>
+                    <p className="text-xs text-muted-foreground mt-2">{selectedShield.attribution}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        )}
       </BentoCardContent>
     </>
   );
