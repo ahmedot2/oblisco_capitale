@@ -33,7 +33,7 @@ export default function Home() {
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
         {hasMounted && (
-          <video 
+          <ClientVideoPlayer 
             className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
             autoPlay
             loop
@@ -67,10 +67,11 @@ export default function Home() {
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                   <ClientVideoPlayer
                     className="w-full h-full object-contain"
-                    controls
+                    autoPlay
+                    muted
+                    loop
                     playsInline
                     src="/vision-video.mp4"
-                    controlsList="nodownload"
                   />
                 </div>
               </section>
@@ -99,10 +100,11 @@ export default function Home() {
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                   <ClientVideoPlayer
                     className="w-full h-full object-contain"
-                    controls
+                    autoPlay
+                    muted
+                    loop
                     playsInline
                     src="/partnership-video.mp4"
-                    controlsList="nodownload"
                   />
                 </div>
               </section>
