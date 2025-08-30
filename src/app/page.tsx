@@ -67,7 +67,7 @@ export default function Home() {
                     preload="metadata"
                     playsInline
                   >
-                    <source src="/vision-video.mp4#t=0.1" type="video/mp4" />
+                    <source src="/vision-video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
@@ -101,7 +101,7 @@ export default function Home() {
                       preload="metadata"
                       playsInline
                     >
-                    <source src="/partnership-video.mp4#t=0.1" type="video/mp4" />
+                    <source src="/partnership-video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
