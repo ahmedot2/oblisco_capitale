@@ -20,6 +20,7 @@ import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
 import React from 'react';
 import RollingGallery from "@/components/dashboard/rolling-gallery";
+import ClientVideoPlayer from "@/components/dashboard/client-video-player";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -30,15 +31,14 @@ export default function Home() {
   return (
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
-        <video
-            className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-           <source src="/background.mp4" type="video/mp4" />
-          </video>
+        <ClientVideoPlayer 
+          src="/background.mp4" 
+          className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
         <div className="absolute inset-0 w-full h-full bg-black/50"></div>
       </div>
       <div className="relative min-h-screen w-full">
@@ -62,15 +62,13 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <video
+                  <ClientVideoPlayer
+                    src="/vision-video.mp4"
                     className="w-full h-full object-contain"
                     controls
                     playsInline
                     controlsList="nodownload"
-                  >
-                    <source src="/vision-video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  />
                 </div>
               </section>
 
@@ -96,15 +94,13 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <video
-                      className="w-full h-full object-contain"
-                      controls
-                      playsInline
-                      controlsList="nodownload"
-                    >
-                    <source src="/partnership-video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <ClientVideoPlayer
+                    src="/partnership-video.mp4"
+                    className="w-full h-full object-contain"
+                    controls
+                    playsInline
+                    controlsList="nodownload"
+                  />
                 </div>
               </section>
 
