@@ -67,11 +67,9 @@ export default function Home() {
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                   <ClientVideoPlayer
                     className="w-full h-full object-contain"
-                    autoPlay
-                    muted
-                    loop
                     playsInline
                     src="/vision-video.mp4"
+                    showControls
                   />
                 </div>
               </section>
@@ -100,11 +98,9 @@ export default function Home() {
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                   <ClientVideoPlayer
                     className="w-full h-full object-contain"
-                    autoPlay
-                    muted
-                    loop
                     playsInline
                     src="/partnership-video.mp4"
+                    showControls
                   />
                 </div>
               </section>
