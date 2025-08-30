@@ -23,8 +23,26 @@ import RollingGallery from "@/components/dashboard/rolling-gallery";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
+
+  const backgroundVideoRef = React.useRef<HTMLVideoElement>(null);
+  const visionVideoRef = React.useRef<HTMLVideoElement>(null);
+  const partnershipVideoRef = React.useRef<HTMLVideoElement>(null);
+
   React.useEffect(() => {
     setHasMounted(true);
+
+    if (backgroundVideoRef.current) {
+      backgroundVideoRef.current.src = "/background.mp4";
+      backgroundVideoRef.current.load();
+    }
+    if (visionVideoRef.current) {
+      visionVideoRef.current.src = "/vision-video.mp4";
+      visionVideoRef.current.load();
+    }
+    if (partnershipVideoRef.current) {
+      partnershipVideoRef.current.src = "/partnership-video.mp4";
+      partnershipVideoRef.current.load();
+    }
   }, []);
 
   return (
@@ -32,7 +50,7 @@ export default function Home() {
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
         {hasMounted && (
           <video 
-            src="/background.mp4" 
+            ref={backgroundVideoRef}
             className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
             autoPlay
             loop
@@ -64,7 +82,7 @@ export default function Home() {
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                   <video
-                    src="/vision-video.mp4"
+                    ref={visionVideoRef}
                     className="w-full h-full object-contain"
                     controls
                     playsInline
@@ -96,7 +114,7 @@ export default function Home() {
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
                   <video
-                    src="/partnership-video.mp4"
+                    ref={partnershipVideoRef}
                     className="w-full h-full object-contain"
                     controls
                     playsInline
