@@ -69,7 +69,7 @@ export default function Home() {
                     className="w-full h-full object-contain"
                     playsInline
                     src="/vision-video.mp4"
-                    showControls
+                    controls
                   />
                 </div>
               </section>
@@ -100,7 +100,7 @@ export default function Home() {
                     className="w-full h-full object-contain"
                     playsInline
                     src="/partnership-video.mp4"
-                    showControls
+                    controls
                   />
                 </div>
               </section>
@@ -156,7 +156,7 @@ export default function Home() {
                             as="span"
                             startOnVisible
                             loop={false}
-                            typingSpeed={30}
+                            typingSpeed={100}
                           />
                           <BriefingModal>
                             <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
@@ -166,8 +166,8 @@ export default function Home() {
                             as="span"
                             startOnVisible
                             loop={false}
-                            typingSpeed={30}
-                            initialDelay={2500}
+                            typingSpeed={100}
+                            initialDelay={100}
                           />
                         </div>
                   </BentoCard>
