@@ -20,7 +20,6 @@ import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
 import React from 'react';
 import RollingGallery from "@/components/dashboard/rolling-gallery";
-import ClientVideoPlayer from "@/components/dashboard/client-video-player";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -31,14 +30,16 @@ export default function Home() {
   return (
     <>
       <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden">
-        <ClientVideoPlayer 
-          src="/background.mp4" 
-          className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
+        {hasMounted && (
+          <video 
+            src="/background.mp4" 
+            className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        )}
         <div className="absolute inset-0 w-full h-full bg-black/50"></div>
       </div>
       <div className="relative min-h-screen w-full">
@@ -62,7 +63,7 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <ClientVideoPlayer
+                  <video
                     src="/vision-video.mp4"
                     className="w-full h-full object-contain"
                     controls
@@ -94,7 +95,7 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <ClientVideoPlayer
+                  <video
                     src="/partnership-video.mp4"
                     className="w-full h-full object-contain"
                     controls
