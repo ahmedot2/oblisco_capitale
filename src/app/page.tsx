@@ -158,7 +158,7 @@ export default function Home() {
                             as="span"
                             startOnVisible
                             loop={false}
-                            typingSpeed={10}
+                            typingSpeed={30}
                           />
                           <BriefingModal>
                             <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
@@ -168,8 +168,8 @@ export default function Home() {
                             as="span"
                             startOnVisible
                             loop={false}
-                            typingSpeed={10}
-                            initialDelay={4000}
+                            typingSpeed={30}
+                            initialDelay={2500}
                           />
                         </div>
                   </BentoCard>
