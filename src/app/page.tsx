@@ -1,3 +1,4 @@
+
 'use client';
 
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
@@ -64,8 +65,8 @@ export default function Home() {
                   <video
                     className="w-full h-full object-contain"
                     controls
-                    preload="metadata"
                     playsInline
+                    controlsList="nodownload"
                   >
                     <source src="/vision-video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
@@ -98,8 +99,8 @@ export default function Home() {
                   <video
                       className="w-full h-full object-contain"
                       controls
-                      preload="metadata"
                       playsInline
+                      controlsList="nodownload"
                     >
                     <source src="/partnership-video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
