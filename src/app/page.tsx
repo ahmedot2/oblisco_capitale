@@ -20,6 +20,7 @@ import { Separator } from "@/components/ui/separator";
 import { TextType } from "@/components/ui/text-type";
 import React from 'react';
 import RollingGallery from "@/components/dashboard/rolling-gallery";
+import { ClientVideoPlayer } from "@/components/common/client-video-player";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -64,7 +65,7 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <video
+                  <ClientVideoPlayer
                     className="w-full h-full object-contain"
                     controls
                     playsInline
@@ -96,7 +97,7 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <video
+                  <ClientVideoPlayer
                     className="w-full h-full object-contain"
                     controls
                     playsInline
