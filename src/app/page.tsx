@@ -21,6 +21,7 @@ import { TextType } from "@/components/ui/text-type";
 import React from 'react';
 import RollingGallery from "@/components/dashboard/rolling-gallery";
 import { ClientVideoPlayer } from "@/components/common/client-video-player";
+import Image from "next/image";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -65,11 +66,12 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <ClientVideoPlayer
-                    className="w-full h-full object-contain"
-                    playsInline
-                    src="/vision-video.mp4"
-                    controls
+                  <Image
+                    src="https://picsum.photos/1280/720"
+                    alt="Vision Video Placeholder"
+                    fill
+                    className="object-cover"
+                    data-ai-hint="futuristic city"
                   />
                 </div>
               </section>
@@ -96,11 +98,12 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <ClientVideoPlayer
-                    className="w-full h-full object-contain"
-                    playsInline
-                    src="/partnership-video.mp4"
-                    controls
+                  <Image
+                    src="https://picsum.photos/1280/720"
+                    alt="Partnership Video Placeholder"
+                    fill
+                    className="object-cover"
+                    data-ai-hint="business handshake"
                   />
                 </div>
               </section>
