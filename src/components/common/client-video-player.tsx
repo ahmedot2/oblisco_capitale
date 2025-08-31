@@ -19,9 +19,11 @@ export function ClientVideoPlayer({ src, className, ...props }: ClientVideoPlaye
     const fetchVideo = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(src);
+        // Construct absolute URL to prevent fetch errors on server/client
+        const absoluteSrc = src.startsWith('http') ? src : `${window.location.origin}${src}`;
+        const response = await fetch(absoluteSrc);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error(`Network response was not ok for: ${absoluteSrc}`);
         }
         const videoBlob = await response.blob();
         objectUrl = URL.createObjectURL(videoBlob);
