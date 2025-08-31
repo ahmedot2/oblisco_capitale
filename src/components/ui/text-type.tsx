@@ -24,7 +24,6 @@ type TextTypeProps = {
   onSentenceComplete?: (sentence: string, index: number) => void;
   startOnVisible?: boolean;
   reverseMode?: boolean;
-  [x: string]: any; // for rest props
 };
 
 export const TextType = ({
@@ -46,7 +45,6 @@ export const TextType = ({
   onSentenceComplete,
   startOnVisible = false,
   reverseMode = false,
-  ...props
 }: TextTypeProps) => {
   const [displayedText, setDisplayedText] = useState("");
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
@@ -221,7 +219,6 @@ export const TextType = ({
     {
       ref: containerRef,
       className: `text-type ${finalClassName}`,
-      ...props,
     },
     ...content
   );
