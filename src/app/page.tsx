@@ -66,12 +66,11 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <Image
-                    src="https://picsum.photos/1280/720"
-                    alt="Vision Video Placeholder"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="futuristic city"
+                  <ClientVideoPlayer
+                    src="/vision-video.mp4"
+                    className="w-full h-full object-cover"
+                    controls
+                    playsInline
                   />
                 </div>
               </section>
@@ -98,12 +97,11 @@ export default function Home() {
               
               <section>
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted border border-white/10 shadow-lg">
-                  <Image
-                    src="https://picsum.photos/1280/720"
-                    alt="Partnership Video Placeholder"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="business handshake"
+                   <ClientVideoPlayer
+                    src="/partnership-video.mp4"
+                    className="w-full h-full object-cover"
+                    controls
+                    playsInline
                   />
                 </div>
               </section>
@@ -159,7 +157,8 @@ export default function Home() {
                             as="span"
                             startOnVisible
                             loop={false}
-                            typingSpeed={100}
+                            typingSpeed={10}
+                            initialDelay={0}
                           />
                           <BriefingModal>
                             <span className="text-primary hover:underline cursor-pointer">begin the conversation</span>
@@ -169,8 +168,8 @@ export default function Home() {
                             as="span"
                             startOnVisible
                             loop={false}
-                            typingSpeed={100}
-                            initialDelay={100}
+                            typingSpeed={10}
+                            initialDelay={0}
                           />
                         </div>
                   </BentoCard>
