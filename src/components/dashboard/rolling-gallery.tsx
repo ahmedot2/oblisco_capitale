@@ -18,8 +18,13 @@ const IMGS = [
   "/gallery-10.jpg",
 ];
 
-const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = [] }) => {
-  images = IMGS;
+interface RollingGalleryProps {
+  autoplay?: boolean;
+  pauseOnHover?: boolean;
+  images?: string[];
+}
+
+const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = IMGS }: RollingGalleryProps) => {
   const [isScreenSizeSm, setIsScreenSizeSm] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [hasMounted, setHasMounted] = useState(false);
