@@ -33,16 +33,16 @@ export function ClientVideoPlayer({ src, className, ...props }: ClientVideoPlaye
 
 
   return (
-    <div className={cn("relative w-full h-full", className)}>
-      {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
+    <>
+      {isLoading && <Skeleton className={cn("absolute inset-0", className)} />}
       <video
         ref={videoRef}
-        className={cn("w-full h-full", { 'opacity-0': isLoading })}
+        className={cn(className, { 'opacity-0': isLoading })}
         src={src}
         onCanPlayThrough={handleCanPlay}
         onError={() => setIsLoading(false)} // Handle video load errors
         {...props}
       />
-    </div>
+    </>
   );
 }
