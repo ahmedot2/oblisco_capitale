@@ -125,7 +125,7 @@ const RollingGallery = ({ autoplay = false, pauseOnHover = false, images = IMGS 
               transform: transform,
               rotateY: rotation,
               width: cylinderWidth,
-              transformStyle: "preserve-d",
+              transformStyle: "preserve-3d",
             }}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
