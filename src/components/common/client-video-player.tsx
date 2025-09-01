@@ -3,59 +3,46 @@
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface ClientVideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   src: string;
 }
 
 export function ClientVideoPlayer({ src, className, ...props }: ClientVideoPlayerProps) {
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleCanPlay = () => {
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    let objectUrl: string | null = null;
-
-    const fetchVideo = async () => {
-      try {
-        setIsLoading(true);
-        // Construct absolute URL to prevent fetch errors on server/client
-        const absoluteSrc = src.startsWith('http') ? src : `${window.location.origin}${src}`;
-        const response = await fetch(absoluteSrc);
-        if (!response.ok) {
-          throw new Error(`Network response was not ok for: ${absoluteSrc}`);
-        }
-        const videoBlob = await response.blob();
-        objectUrl = URL.createObjectURL(videoBlob);
-        setVideoUrl(objectUrl);
-      } catch (error) {
-        console.error('Failed to fetch video:', error);
-        // Fallback to direct src if fetching fails
-        setVideoUrl(src);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchVideo();
-
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      // Reset loading state when src changes
+      setIsLoading(true);
+      videoElement.addEventListener('canplay', handleCanPlay);
+    }
     return () => {
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
+      if (videoElement) {
+        videoElement.removeEventListener('canplay', handleCanPlay);
       }
     };
   }, [src]);
 
-  if (isLoading || !videoUrl) {
-    return <Skeleton className={cn("w-full h-full", className)} />;
-  }
 
   return (
-    <video
-      key={videoUrl}
-      className={className}
-      src={videoUrl}
-      {...props}
-    />
+    <div className={cn("relative w-full h-full", className)}>
+      {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
+      <video
+        ref={videoRef}
+        className={cn("w-full h-full", { 'opacity-0': isLoading })}
+        src={src}
+        onCanPlayThrough={handleCanPlay}
+        onError={() => setIsLoading(false)} // Handle video load errors
+        {...props}
+      />
+    </div>
   );
 }
